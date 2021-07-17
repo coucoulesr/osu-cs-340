@@ -8,6 +8,37 @@
     <link rel="stylesheet" href="styles/styles.css" />
   </head>
   <body>
-    <h1 class="ml-4 mt-4 text-4xl">Hello World</h1>
-  </body>
+    <div>
+        <div class = "bg-blue-100 shadow rounded border border-blue-300">
+            <h1 class = "text-2xl font-bold">Rate this Assignment</h1>
+
+            <div id = "Select Difficulty">
+                <h2 class = "flex justify-center text-xl uppercase font-bold">Difficulty</h2>
+                <div class = "flex flex-row justify-evenly">
+                    <div class = "flex justify-center flex-col items-center">
+                        <div class = "rounded-full h-12 w-12 flex bg-green-500 shadow-md"></div>
+                        <span>Easy</span>
+                    </div>
+                    
+                    <div class = "flex justify-center flex-col items-center">
+                        <div class = "rounded-full h-12 w-12 flex bg-yellow-500 shadow-md"></div>
+                        <span>Medium</span>
+                    </div>
+                    <div class = "flex justify-center flex-col items-center">
+                        <div class = "rounded-full h-12 w-12 flex bg-red-500 shadow-md"></div>
+                        <span>Hard</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id = "Display Classmate Ratings">
+                <h3 class = "text-xl uppercase">Classmate's Rating</h3>
+                <div id = "Difficulty Bar"></div>
+            </div>
+                
+        </div>
+
+    </div>
+    
+</body>
 </html>
