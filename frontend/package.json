@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build-css": "tailwindcss build -i src/styles.css -o public/styles/styles.css",
-    "start": "node node_modules/live-server/live-server.js public"
+    "start": "npx live-server public"
   },
   "author": "",
   "license": "MIT",
