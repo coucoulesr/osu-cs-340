@@ -9,36 +9,111 @@
   </head>
   <body>
     <div>
-        <div class = "bg-blue-100 shadow rounded border border-blue-300">
-            <h1 class = "text-2xl font-bold">Rate this Assignment</h1>
+        <!-- Blue Box -->
+        <div class = "bg-blue-50 shadow rounded border border-blue-300 m-4 text-blue-900">
+          
+          <!-- Ratings Section-->
+          <h1 class = "text-2xl font-bold mx-4 mt-2">Rate this Assignment</h1>
+          <div class = "border-2 border-blue-300 m-4">
 
-            <div id = "Select Difficulty">
-                <h2 class = "flex justify-center text-xl uppercase font-bold">Difficulty</h2>
-                <div class = "flex flex-row justify-evenly">
-                    <div class = "flex justify-center flex-col items-center">
-                        <div class = "rounded-full h-12 w-12 flex bg-green-500 shadow-md"></div>
-                        <span>Easy</span>
-                    </div>
-                    
-                    <div class = "flex justify-center flex-col items-center">
-                        <div class = "rounded-full h-12 w-12 flex bg-yellow-500 shadow-md"></div>
-                        <span>Medium</span>
-                    </div>
-                    <div class = "flex justify-center flex-col items-center">
-                        <div class = "rounded-full h-12 w-12 flex bg-red-500 shadow-md"></div>
-                        <span>Hard</span>
-                    </div>
-                </div>
+            <!-- Difficulty Rating -->
+            <div id = "Difficulty Rating" class = "flex flex-row justify-evenly m-2">
+              <div id = "Select Difficulty" class = "w-1/3">
+                  <h2 class = "flex justify-center text-xl uppercase font-bold mb-2">Difficulty</h2>
+                  <div class = "flex flex-row justify-evenly">
+                      <div class = "flex justify-center flex-col items-center">
+                          <div class = "rounded-full h-12 w-12 flex bg-blue-300 shadow-md"></div>
+                          <span>Easy</span>
+                      </div> 
+                      <div class = "flex justify-center flex-col items-center">
+                          <div class = "rounded-full h-12 w-12 flex bg-blue-500 shadow-md"></div>
+                          <span>Medium</span>
+                      </div>
+                      <div class = "flex justify-center flex-col items-center">
+                          <div class = "rounded-full h-12 w-12 flex bg-blue-900 shadow-md"></div>
+                          <span>Hard</span>
+                      </div>
+                  </div>
+              </div>
+
+              <div id = "Display Difficulty Ratings" class = "w-2/3 mx-2">
+                  <h3 class = "text-xl uppercase mb-4 flex justify-center">Classmate's Rating</h3>
+                  <div id = "Difficulty Bar" class = "rounded-full py-3 px-6 border border-blue-300 shadow-sm"></div>
+              </div>
+            </div>
+            
+            <hr class = "border-blue-300">
+            
+            <!-- Usefulness Rating -->
+            <div id = "Usefulness Rating" class = "flex flex-row justify-evenly m-2">
+              <div id = "Select Usefulness" class = "w-1/3">
+                  <h2 class = "flex justify-center text-xl uppercase font-bold mb-2">Usefulness</h2>
+                  <div class = "flex flex-row justify-evenly">
+                      <div class = "flex justify-center flex-col items-center">
+                          <div class = "rounded-full h-12 w-12 flex bg-purple-200 shadow-md"></div>
+                          <span>Waste</span>
+                      </div> 
+                      <div class = "flex justify-center flex-col items-center">
+                          <div class = "rounded-full h-12 w-12 flex bg-purple-400 shadow-md"></div>
+                          <span>Practice</span>
+                      </div>
+                      <div class = "flex justify-center flex-col items-center">
+                          <div class = "rounded-full h-12 w-12 flex bg-purple-900 shadow-md"></div>
+                          <span>Helpful</span>
+                      </div>
+                  </div>
+              </div>
+
+              <div id = "Display Usefulness Ratings" class = "w-2/3 mx-2">
+                  <h3 class = "text-xl uppercase mb-4 flex justify-center">Classmate's Rating</h3>
+                  <div id = "Usefulness Bar" class = "rounded-full py-3 px-6 border border-blue-300 shadow-sm"></div>
+              </div>
             </div>
 
-            <div id = "Display Classmate Ratings">
-                <h3 class = "text-xl uppercase">Classmate's Rating</h3>
-                <div id = "Difficulty Bar"></div>
+            <hr class = "border-blue-300">
+            
+            <!-- Satisfaction Rating -->
+            <div id = "Satisfaction Rating" class = "flex flex-row justify-evenly m-2">
+              <div id = "Select Satisfaction" class = "w-1/3">
+                  <h2 class = "flex justify-center text-xl uppercase font-bold mb-2">Satisfaction</h2>
+                  <div class = "flex flex-row justify-evenly">
+                      <div class = "flex justify-center flex-col items-center">
+                          <div class = "rounded-full h-12 w-12 flex bg-pink-100 shadow-md"></div>
+                          <span>Hated</span>
+                      </div> 
+                      <div class = "flex justify-center flex-col items-center">
+                          <div class = "rounded-full h-12 w-12 flex bg-pink-300 shadow-md"></div>
+                          <span>Eh...</span>
+                      </div>
+                      <div class = "flex justify-center flex-col items-center">
+                          <div class = "rounded-full h-12 w-12 flex bg-pink-800 shadow-md"></div>
+                          <span>Loved</span>
+                      </div>
+                  </div>
+              </div>
+
+              <div id = "Display Satisfaction Ratings" class = "w-2/3 mx-2">
+                  <h3 class = "text-xl uppercase mb-4 flex justify-center">Classmate's Rating</h3>
+                  <div id = "Satisfaction Bar" class = "rounded-full py-3 px-6 border border-blue-300 shadow-sm"></div>
+              </div>
             </div>
+          </div>
+          
+          <hr class = "border-blue-300">
+
+          <!-- Write a Review Section -->
+          <div>
+            <h1 class = "text-2xl font-bold mx-4 mt-2">Write a Review</h1>
+          </div>
+
+          <hr class = "border-blue-300">
+          <!-- Read Reviews Section -->
+          <div>
+            <h1 class = "text-2xl font-bold mx-4 mt-2">Rate this Assignment</h1>
+          </div>
                 
         </div>
 
     </div>
-    
 </body>
 </html>
