@@ -6,7 +6,7 @@ CREATE TABLE Classes
     id int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
     title varchar(255) NOT NULL,
     subject varchar(255),
-    number int,
+    course_number int,
     section int
 );
 
