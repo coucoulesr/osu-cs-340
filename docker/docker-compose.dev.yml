@@ -1,0 +1,5 @@
+services:
+  coursesignal_db:
+    environment:
+      MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: "true"
+      MARIADB_DATABASE: "test"
