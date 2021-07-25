@@ -113,37 +113,3 @@ CREATE TABLE Students_Assignments
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
-
--------- Sample Data --------
-
--- Classes
-INSERT INTO Classes (title, subject, course_number, section)
-VALUES ();
-
--- Assignments
-INSERT INTO Assignments (class_id, title)
-VALUES ();
-
--- Students
-INSERT INTO Students (first_name, last_name, pin)
-VALUES ();
-
--- Ratings
-INSERT INTO Ratings (score, category, assignment_id, author_id)
-VALUES ();
-
--- Comments
-INSERT INTO Comments (body, created, author_id, assignment_id)
-VALUES ();
-
--- Votes
-INSERT Votes (student_id, comment_id, value)
-VALUES ();
-
--- Students_Classes relationship
-INSERT INTO Students_Classes (student_id, class_id)
-VALUES ();
-
--- Students_Assignments relationship
-INSERT INTO Students_Assignments (student_id, assignment_id)
-VALUES ();
