@@ -1,5 +1,9 @@
 -- Database Definition Queries
 
+-------- Create Tables --------
+
+-- Classes
+DROP TABLE IF EXISTS Classes;
 CREATE TABLE Classes
 (
     id INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -9,7 +13,8 @@ CREATE TABLE Classes
     section INT
 );
 
-
+-- Assignments
+DROP TABLE IF EXISTS Assignments;
 CREATE TABLE Assignments
 (
     id INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -20,6 +25,8 @@ CREATE TABLE Assignments
         ON UPDATE CASCADE
 );
 
+-- Students
+DROP TABLE IF EXISTS Students;
 CREATE TABLE Students
 (
     id INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -28,6 +35,8 @@ CREATE TABLE Students
     pin INT(11) NOT NULL
 );
 
+-- Ratings
+DROP TABLE IF EXISTS Ratings;
 CREATE TABLE Ratings
 (
     id INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -43,6 +52,8 @@ CREATE TABLE Ratings
     UNIQUE (assignment_id, author_id, category)
 );
 
+-- Comments
+DROP TABLE IF EXISTS Comments;
 CREATE TABLE Comments
 (
     id INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -59,6 +70,8 @@ CREATE TABLE Comments
         ON UPDATE CASCADE
 );
 
+-- Votes
+DROP TABLE IF EXISTS Votes;
 CREATE TABLE Votes
 (
     student_id INT(11),
@@ -72,6 +85,8 @@ CREATE TABLE Votes
         ON UPDATE CASCADE
 );
 
+-- Students_Classes relationship
+DROP TABLE IF EXISTS Students_Classes;
 CREATE TABLE Students_Classes
 (
     student_id INT(11),
@@ -84,6 +99,8 @@ CREATE TABLE Students_Classes
         ON UPDATE CASCADE
 );
 
+-- Students_Assignments relationship
+DROP TABLE IF EXISTS Students_Assignments;
 CREATE TABLE Students_Assignments
 (
     student_id INT(11),
@@ -95,3 +112,37 @@ CREATE TABLE Students_Assignments
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
+
+-------- Sample Data --------
+
+-- Classes
+INSERT INTO Classes (title, subject, course_number, section)
+VALUES ();
+
+-- Assignments
+INSERT INTO Assignments (class_id, title)
+VALUES ();
+
+-- Students
+INSERT INTO Students (first_name, last_name, pin)
+VALUES ();
+
+-- Ratings
+INSERT INTO Ratings (score, category, assignment_id, author_id)
+VALUES ();
+
+-- Comments
+INSERT INTO Comments (body, parent_id, created, author_id, assignment_id)
+VALUES ();
+
+-- Votes
+INSERT Votes (student_id, comment_id, value)
+VALUES ();
+
+-- Students_Classes relationship
+INSERT INTO Students_Classes (student_id, class_id)
+VALUES ();
+
+-- Students_Assignments relationship
+INSERT INTO Students_Assignments (student_id, assignment_id)
+VALUES ();
