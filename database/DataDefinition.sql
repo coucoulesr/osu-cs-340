@@ -41,14 +41,16 @@ DROP TABLE IF EXISTS Ratings;
 CREATE TABLE Ratings
 (
     id int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    score tinyint(1) NOT NULL,
+    score smallint(1) NOT NULL,
     category varchar(255) NOT NULL, 
     assignment_id int(11) NOT NULL,
     author_id int(11) NOT NULL,
     FOREIGN KEY (assignment_id) REFERENCES Assignments (id)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
-    FOREIGN KEY (author_id) REFERENCES Students (id),
+    FOREIGN KEY (author_id) REFERENCES Students (id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
     CHECK (category IN ('difficulty', 'helpfulness', 'satisfaction')),
     UNIQUE (assignment_id, author_id, category)
 );
@@ -59,7 +61,6 @@ CREATE TABLE Comments
 (
     id int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
     body text NOT NULL,
-    parent_id int(11),
     created DATETIME NOT NULL,
     author_id int(11) NOT NULL,
     assignment_id int(11) NOT NULL,
@@ -77,7 +78,7 @@ CREATE TABLE Votes
 (
     student_id int(11),
     comment_id int(11),
-    value tinyint(1),
+    value smallint(1),
     FOREIGN KEY (student_id) REFERENCES Students (id)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
@@ -130,10 +131,9 @@ VALUES ();
 
 -- Ratings
 INSERT INTO Ratings (score, category, assignment_id, author_id)
-VALUES ();
 
 -- Comments
-INSERT INTO Comments (body, parent_id, created, author_id, assignment_id)
+INSERT INTO Comments (body, created, author_id, assignment_id)
 VALUES ();
 
 -- Votes
