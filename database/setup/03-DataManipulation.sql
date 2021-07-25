@@ -44,6 +44,11 @@ DELETE FROM Ratings WHERE assignment_id = :currentAssignment AND author_id = cur
 DELETE FROM Ratings WHERE assignment_id = :currentAssignment AND author_id = currentStudent AND category = 'helpfulness';
 DELETE FROM Ratings WHERE assignment_id = :currentAssignment AND author_id = currentStudent AND category = 'satisfaction';
 
+-- Select Ratings to display on score sliders
+SELECT score, COUNT (score) FROM ratings WHERE assignment_id = :currentAssignment AND category = "difficulty" GROUP BY score;
+SELECT score, COUNT (score) FROM ratings WHERE assignment_id = :currentAssignment AND category = "helpfulness" GROUP BY score;
+SELECT score, COUNT (score) FROM ratings WHERE assignment_id = :currentAssignment AND category = "satisfaction" GROUP BY score;
+
 -------- COMMENTS --------
 
 -- Add Comment
@@ -69,3 +74,11 @@ SELECT SUM (value) FROM Votes WHERE comment_id = :selectedComment
 
 -- Get user's vote on each comment
 SELECT value FROM Votes WHERE student_id = :currentStudent AND comment_id = :selectedComment
+
+
+SELECT comments.body, comments.author_id, SUM(votes.value), IF (, "TRUE", "FALSE")
+FROM comments 
+JOIN votes ON comments.id = votes.comment_id 
+JOIN assignments ON comments.assignment_id = assignments.id 
+WHERE assignments.id = :currentAssignment
+GROUP BY comments.id;
