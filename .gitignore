@@ -1,3 +1,6 @@
+# Database data
+/database/data
+
 # Built tailwindcss styles
 frontend/public/styles/
 

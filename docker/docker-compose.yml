@@ -1,0 +1,10 @@
+services:
+  coursesignal_db:
+    build: ../database
+    volumes:
+      - ../database/data:/var/lib/mysql
+    environment:
+      MARIADB_ROOT_PASSWORD: "${COURSESIGNAL_DB_PASSWORD}"
+      MARIADB_DATABASE: "CourseSignal"
+    labels:
+      service-name: coursesignal_db

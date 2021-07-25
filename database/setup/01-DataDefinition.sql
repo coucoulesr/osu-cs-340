@@ -1,26 +1,25 @@
 -- Database Definition Queries
 
-
 -------- Create Tables --------
 
 -- Classes
 DROP TABLE IF EXISTS Classes;
 CREATE TABLE Classes
 (
-    id int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    title varchar(255) NOT NULL,
-    subject varchar(255),
-    course_number int,
-    section int
+    id INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    title VARCHAR(255) NOT NULL,
+    subject VARCHAR(255),
+    course_number INT,
+    section INT
 );
 
 -- Assignments
 DROP TABLE IF EXISTS Assignments;
 CREATE TABLE Assignments
 (
-    id int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    class_id int(11) NOT NULL,
-    title varchar(255),
+    id INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    class_id INT(11) NOT NULL,
+    title VARCHAR(255),
     FOREIGN KEY (class_id) REFERENCES Classes (id)
         ON DELETE CASCADE
         ON UPDATE CASCADE
@@ -30,21 +29,21 @@ CREATE TABLE Assignments
 DROP TABLE IF EXISTS Students;
 CREATE TABLE Students
 (
-    id int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    first_name varchar(255) NOT NULL,     
-    last_name varchar(255) NOT NULL,
-    pin int(11) NOT NULL
+    id INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    first_name VARCHAR(255) NOT NULL,     
+    last_name VARCHAR(255) NOT NULL,
+    pin INT(11) NOT NULL
 );
 
 -- Ratings
 DROP TABLE IF EXISTS Ratings;
 CREATE TABLE Ratings
 (
-    id int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    score smallint(1) NOT NULL,
-    category varchar(255) NOT NULL, 
-    assignment_id int(11) NOT NULL,
-    author_id int(11) NOT NULL,
+    id INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    score SMALLINT(1) NOT NULL,
+    category VARCHAR(255) NOT NULL, 
+    assignment_id INT(11) NOT NULL,
+    author_id INT(11) NOT NULL,
     FOREIGN KEY (assignment_id) REFERENCES Assignments (id)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
@@ -59,11 +58,11 @@ CREATE TABLE Ratings
 DROP TABLE IF EXISTS Comments;
 CREATE TABLE Comments
 (
-    id int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    body text NOT NULL,
+    id INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    body TEXT NOT NULL,
     created DATETIME NOT NULL,
-    author_id int(11) NOT NULL,
-    assignment_id int(11) NOT NULL,
+    author_id INT(11) NOT NULL,
+    assignment_id INT(11) NOT NULL,
     FOREIGN KEY (author_id) REFERENCES Students (id)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
@@ -76,9 +75,9 @@ CREATE TABLE Comments
 DROP TABLE IF EXISTS Votes;
 CREATE TABLE Votes
 (
-    student_id int(11),
-    comment_id int(11),
-    value smallint(1),
+    student_id INT(11),
+    comment_id INT(11),
+    value SMALLINT(1),
     FOREIGN KEY (student_id) REFERENCES Students (id)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
@@ -91,8 +90,8 @@ CREATE TABLE Votes
 DROP TABLE IF EXISTS Students_Classes;
 CREATE TABLE Students_Classes
 (
-    student_id int(11),
-    class_id int(11),
+    student_id INT(11),
+    class_id INT(11),
     FOREIGN KEY (student_id) REFERENCES Students (id)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
@@ -105,8 +104,8 @@ CREATE TABLE Students_Classes
 DROP TABLE IF EXISTS Students_Assignments;
 CREATE TABLE Students_Assignments
 (
-    student_id int(11),
-    assignment_id int(11),
+    student_id INT(11),
+    assignment_id INT(11),
     FOREIGN KEY (student_id) REFERENCES Students (id)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
@@ -131,6 +130,7 @@ VALUES ();
 
 -- Ratings
 INSERT INTO Ratings (score, category, assignment_id, author_id)
+VALUES ();
 
 -- Comments
 INSERT INTO Comments (body, created, author_id, assignment_id)
