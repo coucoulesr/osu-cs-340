@@ -6,8 +6,14 @@
 -------- STUDENTS --------
 
 -- Add Student
+INSERT INTO Students (first_name, last_name, pin)
+VALUES (:fnameInput, :lnameInput, :pinInput);
 
 -- Update Student
+UPDATE Students
+SET first_name = :updatedFname, last_name = :updatedLname, pin = :updatedPin
+WHERE id = :studentId;
+
 
 --------CLASSES --------
 
