@@ -52,10 +52,18 @@ SELECT score, COUNT (score) FROM ratings WHERE assignment_id = :currentAssignmen
 -------- COMMENTS --------
 
 -- Add Comment
+INSERT INTO Comments (body, created, author_id, assignment_id)
+VALUES (:bodyInput, :currentDatetime, :authorInput, assignmentInput);
 
 -- Update Comment
+UPDATE Comments
+SET body = :newBody, created = :currentDatetime, author = :newAuthor, assignment = :newAssignment
+WHERE id = :commentId;
 
 -- Delete Comment
+DELETE FROM Comments
+WHERE id = :commentId;
+
 
 -------- VOTES --------
 
