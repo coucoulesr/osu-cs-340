@@ -27,11 +27,18 @@ UPDATE Classes SET title = :newTitle, subject = :newSubject, course_number = :ne
 -- Delete Class
 DELETE FROM Classes WHERE id = :classToDelete
 
+
 -------- ASSIGNMENTS --------
 
 -- Add Assignment
+INSERT INTO Assignments (class_id, title)
+VALUES (:classInput, :titleInput);
 
 -- Update Assignment
+UPDATE Assignments
+SET class_id = :newClass, title = :newTitle
+WHERE id = :assignmentId;
+
 
 -------- RATINGS --------
 
@@ -54,6 +61,7 @@ DELETE FROM Ratings WHERE assignment_id = :currentAssignment AND author_id = cur
 SELECT score, COUNT (score) FROM ratings WHERE assignment_id = :currentAssignment AND category = "difficulty" GROUP BY score;
 SELECT score, COUNT (score) FROM ratings WHERE assignment_id = :currentAssignment AND category = "helpfulness" GROUP BY score;
 SELECT score, COUNT (score) FROM ratings WHERE assignment_id = :currentAssignment AND category = "satisfaction" GROUP BY score;
+
 
 -------- COMMENTS --------
 
