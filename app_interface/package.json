@@ -1,0 +1,21 @@
+{
+  "name": "coursesignal-frontend",
+  "version": "0.0.1",
+  "description": "Review service for course assignments",
+  "main": "index.js",
+  "scripts": {
+    "build-css": "tailwindcss build -i src/styles.css -o public/stylesheets/styles.css",
+    "start": "npx live-server public"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.2",
+    "mysql": "^2.18.1",
+    "tailwindcss": "^2.2.7"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.1"
+  }
+}
