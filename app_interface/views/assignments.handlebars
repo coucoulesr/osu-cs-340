@@ -1,45 +1,94 @@
 <link rel = "stylesheet" href = "stylesheets/modal.css">
 
-
+{{!-- Course --}}
 <div class="flex flex-col items-center justify-center m-2">
+    <h1 class="text-5xl w-4/6">{{subject}} - {{course_number}}: {{course}} - {{section}}</h1>
 
-  {{!-- Courses Div--}}
-  <div class="w-4/6">
+    {{!-- Main Div--}}
+    <div id = "assignments tab" class="w-4/6 flex flex-col">
 
-    <h1 class="text-5xl">{{subject}} - {{course_number}}: {{course}} - {{section}}</h1>
-
-    {{!-- Box --}}
-    <div class="p-4 bg-blue-50">
-
-      {{!-- Add course button --}}
-      <button id = "modal_open" class = "bg-indigo-400 text-white rounded-2xl shadow mx-4 w-56 h-14">
-        Add Assignment
-      </button>
-
-      {{!-- Add course modal --}}
-      <div id = "modal" class = "modal">
-        <div class="bg-blue-100 w-96 justify-self-center h-32 flex-col">
-          <div class = "bg-indigo-400 w-full flex justify-between px-4 text-lg text-white">
-            <h1 class = >Add an Assignment</h2>
-            <button id = "modal_close" class = "text-white">x</button>
-          </div>
-
-          <form id="add-assignment" method="POST" onsubmit="return false;" class = "flex flex-col justify-center items-center">
-            <div class = "m-4">
-                <label for="title" class="w-32 mr-2 text-right">
-                    Title:
-                </label>
-                <input type="text" id="title" name="title" placeholder="HW 1 - Sample Title" class = "focus:outline-none focus:placeholder-transparent shadow"/>
-            </div>
-            <input class="p-2 bg-indigo-400 text-white rounded-xl shadow self-end mx-4" type="submit" value="Add Assignment" />
-          </form>
-          
+        {{!-- Tabs --}}
+        <div class="flex flex-row">
+            <h2 class="bg-blue-50 p-2 rounded-t-2xl w-32 text-center tab">Assignments</h2>
+            <h2 class="bg-blue-50 p-2 rounded-t-2xl w-32 text-center tab" style="box-shadow: 0 -5px 5px #DBEAFE inset;">Students</h2>
         </div>
-      </div>
 
+        {{!-- Assignments Content --}}
+        <div class="p-4 bg-blue-50 tab_contents">
+
+            {{!-- Add-assignment button --}}
+            <button id = "modal_open" class = "bg-indigo-400 text-white rounded-2xl shadow mx-4 w-56 h-14">
+            Add Assignment
+            </button>
+
+            {{!-- Add-assignment modal --}}
+            <div id = "modal" class = "modal">
+                <div class="bg-blue-100 w-96 justify-self-center h-32 flex-col">
+                    <div class = "bg-indigo-400 w-full flex justify-between px-4 text-lg text-white">
+                        <h1 class = >Add an Assignment</h2>
+                        <button id = "modal_close" class = "text-white">x</button>
+                    </div>
+
+                    <form id="add-assignment" method="POST" onsubmit="return false;" class = "flex flex-col justify-center items-center">
+                        <div class = "m-4">
+                            <label for="title" class="w-32 mr-2 text-right">
+                            Title:
+                            </label>
+                            <input type="text" id="title" name="title" placeholder="HW 1 - Sample Title" class = "focus:outline-none focus:placeholder-transparent shadow"/>
+                        </div>
+                        <input class="p-2 bg-indigo-400 text-white rounded-xl shadow self-end mx-4" type="submit" value="Add Assignment" />
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
     </div>
-  </div>
+
+    {{!-- Students Div--}}
+    <div id = "students tab" class="w-4/6 flex flex-col tab_contents">
+
+        {{!-- Tabs --}}
+        <div class="flex flex-row">
+            <h2 class="bg-blue-50 p-2 rounded-t-2xl w-32 text-center tab" style="box-shadow: 0 -5px 5px #DBEAFE inset;">Assignments</h2>
+            <h2 class="bg-blue-50 p-2 rounded-t-2xl w-32 text-center tab">Students</h2>
+        </div>
+
+        {{!-- Content --}}
+        <div class="p-4 bg-blue-50">
+
+            {{!-- Add-Students button --}}
+            <button id = "modal_open" class = "bg-indigo-400 text-white rounded-2xl shadow mx-4 w-56 h-14">
+            Add Student to Course
+            </button>
+
+            {{!-- Add-Students modal --}}
+            <div id = "modal" class = "modal">
+                <div class="bg-blue-100 w-96 justify-self-center h-32 flex-col">
+                    <div class = "bg-indigo-400 w-full flex justify-between px-4 text-lg text-white">
+                        <h1 class = >Add Student to Course</h2>
+                        <button id = "modal_close" class = "text-white">x</button>
+                    </div>
+
+                    <form id="add-assignment" method="POST" onsubmit="return false;" class = "flex flex-col justify-center items-center">
+                        <div class = "m-4">
+                            <label for="title" class="w-32 mr-2 text-right">
+                            Title:
+                            </label>
+                            <input type="text" id="title" name="title" placeholder="HW 1 - Sample Title" class = "focus:outline-none focus:placeholder-transparent shadow"/>
+                        </div>
+                        <input class="p-2 bg-indigo-400 text-white rounded-xl shadow self-end mx-4" type="submit" value="Add Student" />
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
 </div>
 
+
 <script src="javascripts/modal.js"></script>
+<script src="javascripts/tabs.js"></script>
 
