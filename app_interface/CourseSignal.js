@@ -26,7 +26,7 @@ app.use(express.urlencoded({extended: false}))
 // Main page
 app.get('/', function(req, res){
 
-    res.render('home.handlebars')
+    res.render('courses.handlebars')
 })
 
 // ---------- LAUNCH ----------
