@@ -3,7 +3,17 @@
 var express = require('express');
 var path = require('path');
 var mysql = require('mysql');
+const { fileURLToPath } = require('url');
 var handlebars = require('express-handlebars').create()
+
+// Create SQL Pool
+let pool = mysql.createPool({
+    connectionLimit : 10,
+    host            : 'classmysql.engr.oregonstate.edu',
+    user            : 'cs340_cannonst',
+    password        : 'b5o9 pota^o',
+    database        : 'cs340_cannonst',
+})
 
 // Initialize express
 var app = express();
@@ -26,8 +36,16 @@ app.use(express.urlencoded({extended: false}))
 // Main page
 app.get('/', function(req, res){
 
-    res.render('courses.handlebars')
+
+    res.render('courses.handlebars', context)
 })
+
+// Course page
+app.get('/test', function(req, res){
+    res.render('assignments.handlebars')
+})
+
+
 
 // ---------- LAUNCH ----------
 app.set('port', 4000)
