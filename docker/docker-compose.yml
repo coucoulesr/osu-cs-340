@@ -8,3 +8,7 @@ services:
       MARIADB_DATABASE: "CourseSignal"
     labels:
       service-name: coursesignal_db
+  coursesignal_server:
+    build: ../app_interface
+    ports:
+      - "4000:4000"

@@ -3,3 +3,7 @@ services:
     environment:
       MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: "true"
       MARIADB_DATABASE: "test"
+  coursesignal_server:
+    volumes:
+      - ../app_interface:/usr/src/coursesignal
+    command: ["npx", "nodemon", "--legacy-watch", "CourseSignal.js"]
