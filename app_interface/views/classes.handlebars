@@ -1,22 +1,42 @@
 <link rel = "stylesheet" href = "stylesheets/modal.css">
 
 
-<div class="flex flex-col items-center justify-center m-2">
+{{!-- Wrapper --}}
+<div class="flex flex-col items-center justify-center">
+  {{!-- Main Div--}}
+  <div class = "flex flex-col justify-center w-4/6">
 
-  {{!-- Classes Div--}}
-  <div class="w-4/6">
+    <h1 class="text-5xl my-2">Classes</h1>
 
-    <h1 class="text-5xl">Classes</h1>
-
-    {{!-- Box --}}
-    <div class="p-4 bg-blue-50">
+    {{!-- Classes Div--}}
+    <div class="p-4 bg-blue-50 flex flex-col">
 
       {{!-- Add-class button --}}
-      <button id = "modal_open" class = "bg-indigo-400 text-white rounded-2xl shadow mx-4 w-56 h-14">
+      <button id = "modal_open" class = "bg-indigo-400 text-white rounded-2xl shadow my-4 w-56 h-14 self-start">
         Add Class
       </button>
 
       {{!-- Display Class Data --}}
+      <div class = "bg-white h-14 border border-blue-300 shadow flex flex-row  justify-between items-center p-4">
+        <button>TEST 101 - Remove this Div in classes.handlebars</button>
+        <div class = "w-24 flex flex-row justify-between text-blue-500">
+          <button>Edit</button>
+          <button>Delete</button>
+        </div>
+      </div>
+
+      {{#each table_data}}
+
+        <div class = "bg-white h-14 border border-blue-300 shadow flex flex-row  justify-between items-center p-4">
+          <button>{{subject}} - {{course_number}}: {{course}} - {{section}}</button>
+          <div class = "w-24 flex flex-row justify-between text-blue-500">
+            <button>Edit</button>
+            <button>Delete</button>
+          </div>
+        </div>
+      
+      {{/each}}
+
       
 
       {{!-- Add-Class modal --}}
