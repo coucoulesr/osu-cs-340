@@ -4,6 +4,7 @@ var express = require("express");
 var path = require("path");
 var handlebars = require("express-handlebars").create();
 const dbUtil = require("./utils/DbUtil");
+const { fileURLToPath } = require('url');
 
 // Initialize express
 var app = express();
@@ -37,6 +38,13 @@ app.get("/", function (req, res) {
 app.get("/classes", async (req, res) => {
   res.status(200).send(await db.getClasses());
 });
+
+// Course page
+app.get('/test', function(req, res){
+    res.render('assignments.handlebars')
+})
+
+
 
 // ---------- LAUNCH ----------
 app.set("port", 4000);
