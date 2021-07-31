@@ -36,7 +36,21 @@ app.use(express.urlencoded({extended: false}))
 // Main page
 app.get('/', function(req, res){
 
+    pool.query("SELECT * FROM classes", function(err, rows, fields){
+        // Check for errors
+        if (err){
+            next(err);
+            return;
+        }
+        
 
+        // Convert data into object to pass to handlebars
+        let context = {}
+        context.table_data = rows
+        
+        // Update/Display page
+        res.render('Home.handlebars', context)
+    })
     res.render('courses.handlebars', context)
 })
 
