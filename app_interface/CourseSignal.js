@@ -32,7 +32,7 @@ const db = new dbUtil({
 
 // Main page
 app.get("/", function (req, res) {
-  res.render("courses.handlebars");
+  res.render("classes.handlebars");
 });
 
 app.get("/classes", async (req, res) => {
