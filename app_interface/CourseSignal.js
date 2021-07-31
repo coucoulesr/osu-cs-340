@@ -2,8 +2,8 @@
 // Get Dependencies
 var express = require("express");
 var path = require("path");
-var mysql = require("mysql");
 var handlebars = require("express-handlebars").create();
+const dbUtil = require("./utils/DbUtil");
 
 // Initialize express
 var app = express();
@@ -19,11 +19,23 @@ app.use(express.static(path.join(__dirname, "public"))); // App will get static 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// Set up database connection
+const db = new dbUtil({
+  host: "coursesignal_db",
+  user: "root",
+  database: "test",
+  connectionLimit: 5,
+});
+
 // ---------- ROUTING ----------
 
 // Main page
 app.get("/", function (req, res) {
   res.render("courses.handlebars");
+});
+
+app.get("/classes", async (req, res) => {
+  res.status(200).send(await db.getClasses());
 });
 
 // ---------- LAUNCH ----------
