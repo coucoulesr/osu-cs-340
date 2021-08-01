@@ -35,10 +35,19 @@ class db {
     }
   }
 
-  async getClasses() {
+  async select(table, { filters = null, filterParams = [] } = {}) {
     try {
-      const classes = await this.pool.query("SELECT * FROM Classes;");
-      return classes;
+      let query = "SELECT * FROM " + table;
+      if (filters) {
+        query += " WHERE ";
+        for (let filter of filters) {
+          query += `${filter} AND `;
+        }
+        query = query.slice(0, query.length - 5);
+      }
+      query += ";";
+      let output = this.pool.query(query, filterParams);
+      return output;
     } catch (e) {
       console.log("getClasses error: ", e);
       throw e;

@@ -4,7 +4,7 @@ var express = require("express");
 var path = require("path");
 var handlebars = require("express-handlebars").create();
 const dbUtil = require("./utils/DbUtil");
-const { fileURLToPath } = require('url');
+const { fileURLToPath } = require("url");
 
 // Initialize express
 var app = express();
@@ -31,20 +31,23 @@ const db = new dbUtil({
 // ---------- ROUTING ----------
 
 // Main page
-app.get("/", function (req, res) {
-  res.render("courses.handlebars");
+app.get("/", async (req, res) => {
+  const courses = await db.select("Classes");
+  res.render("courses.handlebars", { courses });
 });
 
-app.get("/classes", async (req, res) => {
-  res.status(200).send(await db.getClasses());
+app.get("/courses/:id", async (req, res) => {
+  const course = await db.select("Classes", {
+    filters: ["id=?"],
+    filterParams: [req.params.id],
+  });
+  res.status(200).send(course);
 });
 
 // Course page
-app.get('/test', function(req, res){
-    res.render('assignments.handlebars')
-})
-
-
+app.get("/test", function (req, res) {
+  res.render("assignments.handlebars");
+});
 
 // ---------- LAUNCH ----------
 app.set("port", 4000);

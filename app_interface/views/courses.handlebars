@@ -12,14 +12,14 @@
     <div class="p-4 bg-blue-50">
 
       {{!-- Add-course button --}}
-      <button id = "modal_open" class = "bg-indigo-400 text-white rounded-2xl shadow mx-4 w-56 h-14">
+      <button id = "modal_open" class = "w-56 mx-4 text-white bg-indigo-400 shadow rounded-2xl h-14">
         Add Course
       </button>
 
       {{!-- Add-course modal --}}
       <div id = "modal" class = "modal">
         <div class="bg-blue-100 w-96 justify-self-center h-72">
-          <div class = "bg-indigo-400 w-full flex justify-between px-4 text-lg text-white">
+          <div class = "flex justify-between w-full px-4 text-lg text-white bg-indigo-400">
             <h1 class = >Add a New Course</h2>
             <button id = "modal_close" class = "text-white">x</button>
           </div>
@@ -30,31 +30,41 @@
                 <label for="title" class="inline-block w-32 mr-2 text-right">
                   Title:
                 </label>
-                <input type="text" id="title" name="title" placeholder="Martian Economics" class = "focus:outline-none focus:placeholder-transparent shadow"/>
+                <input type="text" id="title" name="title" placeholder="Martian Economics" class = "shadow focus:outline-none focus:placeholder-transparent"/>
               </div>
               <div>
                 <label for="subject" class="inline-block w-32 mr-2 text-right">
                   Subject:
                 </label>
-                <input type="text" id="subject" name="subject" placeholder="ECON" class = "focus:outline-none focus:placeholder-transparent shadow"/>
+                <input type="text" id="subject" name="subject" placeholder="ECON" class = "shadow focus:outline-none focus:placeholder-transparent"/>
               </div>
               <div>
                 <label for="course-number" class="inline-block w-32 mr-2 text-right">
                   Course Number:
                 </label>
-                <input type="text" id="course-number" name="course-number" placeholder="425" class = "focus:outline-none focus:placeholder-transparent shadow"/>
+                <input type="text" id="course-number" name="course-number" placeholder="425" class = "shadow focus:outline-none focus:placeholder-transparent"/>
               </div>
               <div>
                 <label for="section" class="inline-block w-32 mr-2 text-right">
                   Section:
                 </label>
-                <input type="text" id="section" name="section" placeholder="2" class = "focus:outline-none focus:placeholder-transparent shadow"/>
+                <input type="text" id="section" name="section" placeholder="2" class = "shadow focus:outline-none focus:placeholder-transparent"/>
               </div>
-              <input class="self-end p-2 bg-indigo-400 text-white rounded-xl shadow" type="submit" value="Add Course" />
+              <input class="self-end p-2 text-white bg-indigo-400 shadow rounded-xl" type="submit" value="Add Course" />
             </div>
           </form>
         </div>
       </div>
+
+      <ul>
+      {{#each courses}}
+        <li>
+          <a href="/courses/{{this.id}}">
+            {{this.subject}}{{this.course_number}} - {{this.title}}
+          </a>
+        </li>
+      {{/each}}
+      </ul>
 
     </div>
   </div>
