@@ -36,19 +36,24 @@ app.get("/", async (req, res) => {
   res.render("courses.handlebars", { courses });
 });
 
+// Get course info
+app.get("/courses/:id", async (req, res) => {
+  const [course] = await db.select("Classes", {
+    filters: ["id=?"],
+    filterParams: [req.params.id],
+  });
+  const students = await db.getStudentsInCourse(course.id);
+  const assignments = await db.getAssignmentsInCourse(course.id);
+  res.render("assignments.handlebars", { course, students, assignments });
+});
+
+// Add new assignment
 app.post("/", async (req, res) => {
   await db.insert("Classes", req.body);
   res.redirect("/");
 });
 
-app.get("/courses/:id", async (req, res) => {
-  const course = await db.select("Classes", {
-    filters: ["id=?"],
-    filterParams: [req.params.id],
-  });
-  res.status(200).send(course);
-});
-
+// Delete course by id
 app.delete("/delete-course/:id", async (req, res) => {
   const result = await db.delete("Classes", {
     filters: ["id=?"],
@@ -59,11 +64,6 @@ app.delete("/delete-course/:id", async (req, res) => {
   } else {
     res.sendStatus(404);
   }
-});
-
-// Course page
-app.get("/test", function (req, res) {
-  res.render("assignments.handlebars");
 });
 
 // ---------- LAUNCH ----------

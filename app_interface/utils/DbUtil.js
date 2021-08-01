@@ -35,6 +35,7 @@ class db {
     }
   }
 
+  // Select from table using given filters
   async select(table, { filters = null, filterParams = [] } = {}) {
     try {
       let query = "SELECT * FROM " + table;
@@ -46,14 +47,15 @@ class db {
         query = query.slice(0, query.length - 5);
       }
       query += ";";
-      let output = this.pool.query(query, filterParams);
+      const output = await this.pool.query(query, filterParams);
       return output;
     } catch (e) {
-      console.log("db.select error: ", e);
+      console.error("db.select error: ", e);
       throw e;
     }
   }
 
+  // Insert values into table
   async insert(table, values) {
     try {
       let query = "INSERT INTO " + table + " (";
@@ -69,14 +71,15 @@ class db {
       }
       query = query.slice(0, query.length - 2);
       query += ");";
-      let output = this.pool.query(query, queryParams);
+      const output = await this.pool.query(query, queryParams);
       return output;
     } catch (e) {
-      console.log("db.insert error: ", e);
+      console.error("db.insert error: ", e);
       throw e;
     }
   }
 
+  // Delete from table elements which match given filters
   async delete(table, { filters, filterParams }) {
     try {
       if (!filters || filters.length === 0) {
@@ -88,10 +91,43 @@ class db {
       }
       query = query.slice(0, query.length - 5);
       query += ";";
-      let output = this.pool.query(query, filterParams);
+      const output = await this.pool.query(query, filterParams);
       return output;
     } catch (e) {
-      console.log("db.insert error: ", e);
+      console.error("db.insert error: ", e);
+      throw e;
+    }
+  }
+
+  // Get students in course by courseId
+  async getStudentsInCourse(courseId) {
+    try {
+      const output = await this.pool.query(
+        "SELECT s.* FROM Students s " +
+          "INNER JOIN Students_Classes sc ON sc.student_id=s.id " +
+          "INNER JOIN Classes c ON c.id=sc.class_id " +
+          "WHERE c.id=?;",
+        [courseId]
+      );
+      return output;
+    } catch (e) {
+      console.error("db.getStudentsInCourse error: ", e);
+      throw e;
+    }
+  }
+
+  // Get assignments in course by courseId
+  async getAssignmentsInCourse(courseId) {
+    try {
+      const output = await this.pool.query(
+        "SELECT a.* FROM Assignments a " +
+          "INNER JOIN Classes c ON c.id=a.class_id " +
+          "WHERE c.id=?;",
+        [courseId]
+      );
+      return output;
+    } catch (e) {
+      console.error("db.getStudentsInCourse error: ", e);
       throw e;
     }
   }
