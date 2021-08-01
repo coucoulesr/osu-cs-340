@@ -49,7 +49,30 @@ class db {
       let output = this.pool.query(query, filterParams);
       return output;
     } catch (e) {
-      console.log("getClasses error: ", e);
+      console.log("db.select error: ", e);
+      throw e;
+    }
+  }
+
+  async insert(table, values) {
+    try {
+      let query = "INSERT INTO " + table + " (";
+      let queryParams = [];
+      for (let key in values) {
+        query += `${key}, `;
+      }
+      query = query.slice(0, query.length - 2);
+      query += ")\nVALUES (";
+      for (let key in values) {
+        query += "?, ";
+        queryParams.push(values[key]);
+      }
+      query = query.slice(0, query.length - 2);
+      query += ");";
+      let output = this.pool.query(query, queryParams);
+      return output;
+    } catch (e) {
+      console.log("db.insert error: ", e);
       throw e;
     }
   }

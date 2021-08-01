@@ -36,6 +36,11 @@ app.get("/", async (req, res) => {
   res.render("courses.handlebars", { courses });
 });
 
+app.post("/", async (req, res) => {
+  await db.insert("Classes", req.body);
+  res.redirect("/");
+});
+
 app.get("/courses/:id", async (req, res) => {
   const course = await db.select("Classes", {
     filters: ["id=?"],

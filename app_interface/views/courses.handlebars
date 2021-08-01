@@ -24,31 +24,31 @@
             <button id = "modal_close" class = "text-white">x</button>
           </div>
 
-          <form id="add-course" method="POST" onsubmit="return false;">
+          <form id="add-course" method="POST">
             <div class="inline-flex flex-col p-4 space-y-4 bg-blue-100">
               <div>
                 <label for="title" class="inline-block w-32 mr-2 text-right">
                   Title:
                 </label>
-                <input type="text" id="title" name="title" placeholder="Martian Economics" class = "shadow focus:outline-none focus:placeholder-transparent"/>
+                <input type="text" id="title" name="title" placeholder="Martian Economics" class="shadow focus:outline-none focus:placeholder-transparent"/>
               </div>
               <div>
                 <label for="subject" class="inline-block w-32 mr-2 text-right">
                   Subject:
                 </label>
-                <input type="text" id="subject" name="subject" placeholder="ECON" class = "shadow focus:outline-none focus:placeholder-transparent"/>
+                <input type="text" id="subject" name="subject" placeholder="ECON" class="shadow focus:outline-none focus:placeholder-transparent"/>
               </div>
               <div>
                 <label for="course-number" class="inline-block w-32 mr-2 text-right">
                   Course Number:
                 </label>
-                <input type="text" id="course-number" name="course-number" placeholder="425" class = "shadow focus:outline-none focus:placeholder-transparent"/>
+                <input type="text" id="course-number" name="course_number" placeholder="425" class="shadow focus:outline-none focus:placeholder-transparent"/>
               </div>
               <div>
                 <label for="section" class="inline-block w-32 mr-2 text-right">
                   Section:
                 </label>
-                <input type="text" id="section" name="section" placeholder="2" class = "shadow focus:outline-none focus:placeholder-transparent"/>
+                <input type="text" id="section" name="section" placeholder="2" class="shadow focus:outline-none focus:placeholder-transparent"/>
               </div>
               <input class="self-end p-2 text-white bg-indigo-400 shadow rounded-xl" type="submit" value="Add Course" />
             </div>
