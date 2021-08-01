@@ -16,7 +16,6 @@ const deleteCourse = async (id) => {
 const deleteButtons = document.getElementsByClassName(
   "js-delete-course-button"
 );
-console.log(deleteButtons);
 
 for (button of deleteButtons) {
   button.addEventListener("click", () => {
