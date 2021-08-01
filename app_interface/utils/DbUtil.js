@@ -76,6 +76,25 @@ class db {
       throw e;
     }
   }
+
+  async delete(table, { filters, filterParams }) {
+    try {
+      if (!filters || filters.length === 0) {
+        throw new Error("db.delete requires a filter parameter.");
+      }
+      let query = "DELETE FROM " + table + " WHERE ";
+      for (let filter of filters) {
+        query += `${filter} AND `;
+      }
+      query = query.slice(0, query.length - 5);
+      query += ";";
+      let output = this.pool.query(query, filterParams);
+      return output;
+    } catch (e) {
+      console.log("db.insert error: ", e);
+      throw e;
+    }
+  }
 }
 
 module.exports = db;

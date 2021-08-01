@@ -49,6 +49,18 @@ app.get("/courses/:id", async (req, res) => {
   res.status(200).send(course);
 });
 
+app.delete("/delete-course/:id", async (req, res) => {
+  const result = await db.delete("Classes", {
+    filters: ["id=?"],
+    filterParams: [req.params.id],
+  });
+  if (result.affectedRows > 0) {
+    res.sendStatus(200);
+  } else {
+    res.sendStatus(404);
+  }
+});
+
 // Course page
 app.get("/test", function (req, res) {
   res.render("assignments.handlebars");
