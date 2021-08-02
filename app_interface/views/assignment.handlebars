@@ -1,0 +1,215 @@
+<div>
+      <!-- Blue Box -->
+      <div
+        class="m-4 text-blue-900 border border-blue-300 rounded shadow bg-blue-50"
+      >
+        <!-- Ratings Section-->
+        <h1 class="mx-4 mt-2 text-2xl font-bold">Rate this Assignment</h1>
+        <div class="m-4 border-2 border-blue-300">
+          <!-- Difficulty Rating -->
+          <form id="Difficulty Rating" class="flex flex-row m-2 justify-evenly">
+            <div id="Select Difficulty" class="w-1/3">
+              <h2 class="flex justify-center mb-2 text-xl font-bold uppercase">
+                Difficulty
+              </h2>
+              <div class="flex flex-row justify-evenly">
+                <div class="flex flex-col items-center justify-center">
+                  <button
+                    class="flex w-12 h-12 bg-blue-300 rounded-full shadow-md"
+                  ></button>
+                  <span>Easy</span>
+                </div>
+                <div class="flex flex-col items-center justify-center">
+                  <button
+                    class="flex w-12 h-12 bg-blue-500 rounded-full shadow-md"
+                  ></button>
+                  <span>Medium</span>
+                </div>
+                <div class="flex flex-col items-center justify-center">
+                  <button
+                    class="flex w-12 h-12 bg-blue-900 rounded-full shadow-md"
+                  ></button>
+                  <span>Hard</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- For future the ratings bar should be dynamic. Hard coded here for demonstration -->
+            <div id="Display Difficulty Ratings" class="w-2/3 mx-2">
+              <h3 class="flex justify-center mb-4 text-xl uppercase">
+                Classmate's Ratings
+              </h3>
+              <div
+                id="Difficulty Bar"
+                class="flex flex-row w-full h-6 rounded-full shadow-sm"
+              >
+                <div class="w-1/3 h-full bg-blue-300 rounded-l-full"></div>
+                <div class="w-1/3 h-full bg-blue-500"></div>
+                <div class="w-1/3 h-full bg-blue-900 rounded-r-full"></div>
+              </div>
+              <div class="flex flex-row w-full rounded-full">
+                <p class="flex justify-center w-1/3">{{ratings.difficulty.downvotes}}</p>
+                <p class="flex justify-center w-1/3">{{ratings.difficulty.midvotes}}</p>
+                <p class="flex justify-center w-1/3">{{ratings.difficulty.upvotes}}</p>
+              </div>
+            </div>
+          </form>
+
+          <hr class="border-blue-300" />
+
+          <!-- Usefulness Rating -->
+          <form id="Usefulness Rating" class="flex flex-row m-2 justify-evenly">
+            <div id="Select Usefulness" class="w-1/3">
+              <h2 class="flex justify-center mb-2 text-xl font-bold uppercase">
+                Usefulness
+              </h2>
+              <div class="flex flex-row justify-evenly">
+                <div class="flex flex-col items-center justify-center">
+                  <button
+                    class="flex w-12 h-12 bg-purple-300 rounded-full shadow-md"
+                  ></button>
+                  <span>Waste</span>
+                </div>
+                <div class="flex flex-col items-center justify-center">
+                  <button
+                    class="flex w-12 h-12 bg-purple-500 rounded-full shadow-md"
+                  ></button>
+                  <span>Practice</span>
+                </div>
+                <div class="flex flex-col items-center justify-center">
+                  <button
+                    class="flex w-12 h-12 bg-purple-900 rounded-full shadow-md"
+                  ></button>
+                  <span>Helpful</span>
+                </div>
+              </div>
+            </div>
+
+            <div id="Display Usefulness Ratings" class="w-2/3 mx-2">
+              <h3 class="flex justify-center mb-4 text-xl uppercase">
+                Classmate's Ratings
+              </h3>
+              <div
+                id="Usefulness Bar"
+                class="flex flex-row w-full h-6 rounded-full shadow-sm"
+              >
+                <div class="w-1/6 h-full bg-purple-300 rounded-l-full"></div>
+                <div class="w-1/6 h-full bg-purple-500"></div>
+                <div class="w-4/6 h-full bg-purple-900 rounded-r-full"></div>
+              </div>
+              <div class="flex flex-row w-full rounded-full">
+                <p class="flex justify-center w-1/6">{{ratings.usefulness.downvotes}}</p>
+                <p class="flex justify-center w-1/6">{{ratings.usefulness.midvotes}}</p>
+                <p class="flex justify-center w-4/6">{{ratings.usefulness.upvotes}}</p>
+              </div>
+            </div>
+          </form>
+
+          <hr class="border-blue-300" />
+
+          <!-- Satisfaction Rating -->
+          <form
+            id="Satisfaction Rating"
+            class="flex flex-row m-2 justify-evenly"
+          >
+            <div id="Select Satisfaction" class="w-1/3">
+              <h2 class="flex justify-center mb-2 text-xl font-bold uppercase">
+                Satisfaction
+              </h2>
+              <div class="flex flex-row justify-evenly">
+                <div class="flex flex-col items-center justify-center">
+                  <button
+                    class="flex w-12 h-12 bg-pink-300 rounded-full shadow-md"
+                  ></button>
+                  <span>Hated</span>
+                </div>
+                <div class="flex flex-col items-center justify-center">
+                  <button
+                    class="flex w-12 h-12 bg-pink-500 rounded-full shadow-md"
+                  ></button>
+                  <span>Eh...</span>
+                </div>
+                <div class="flex flex-col items-center justify-center">
+                  <button
+                    class="flex w-12 h-12 bg-pink-900 rounded-full shadow-md"
+                  ></button>
+                  <span>Loved</span>
+                </div>
+              </div>
+            </div>
+
+            <div id="Display Satisfaction Ratings" class="w-2/3 mx-2">
+              <h3 class="flex justify-center mb-4 text-xl uppercase">
+                Classmate's Ratings
+              </h3>
+              <div
+                id="Satisfaction Bar"
+                class="flex flex-row w-full h-6 rounded-full shadow-sm"
+              >
+                <div class="w-1/6 h-full bg-pink-300 rounded-l-full"></div>
+                <div class="w-4/6 h-full bg-pink-500"></div>
+                <div class="w-1/6 h-full bg-pink-900 rounded-r-full"></div>
+              </div>
+              <div class="flex flex-row w-full rounded-full">
+                <p class="flex justify-center w-1/6">{{ratings.satisfaction.downvotes}}</p>
+                <p class="flex justify-center w-4/6">{{ratings.satisfaction.midvotes}}</p>
+                <p class="flex justify-center w-1/6">{{ratings.satisfaction.upvotes}}</p>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <hr class="border-blue-300" />
+
+        <!-- Write a Review Section -->
+        <div class="pt-2 mx-4">
+          <h1 class="text-2xl font-bold">Write a Review</h1>
+          <div class="mx-4 my-2">
+            <form id="new-review" method="POST" onsubmit="return false;">
+              <textarea
+                id="review-text"
+                class="w-full h-40 px-1 rounded"
+              ></textarea>
+              <span class="flex justify-end w-full">
+                <input
+                  class="px-3 py-2 my-1"
+                  type="submit"
+                  value="Post Review"
+                />
+              </span>
+            </form>
+          </div>
+        </div>
+
+        <hr class="border-blue-300" />
+        <!-- Read Reviews Section -->
+        <div class="pt-2 mx-4">
+          <h1 class="text-2xl font-bold">Read Other Reviews</h1>
+          <!-- All Reviews container -->
+          <div
+            class="mx-4 my-2 bg-indigo-100 divide-y divide-indigo-300 rounded"
+          >
+            {{#each comments}}
+            <!-- Single Review container -->
+            <div class="flex p-2 my-2">
+              <!-- Reviewer Info -->
+              <div class="mt-1 ml-2 mr-4 w-14 min-w-14 flex-0">
+                <a href="#">
+                  <img
+                    src="https://source.unsplash.com/random/400x400"
+                    class="w-24 rounded-full"
+                  />
+                  <p class="text-sm font-bold text-center">{{this.first_name}} {{this.last_name}}</p>
+                </a>
+              </div>
+              <!-- Review Body -->
+              <div class="flex flex-1 ml-2">
+                <p class="self-center">
+                  {{this.body}}
+                </p>
+              </div>
+            </div>
+            {{/each}}
+          </div>
+        </div>
+      </div>

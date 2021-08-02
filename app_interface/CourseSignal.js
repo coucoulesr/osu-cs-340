@@ -63,7 +63,14 @@ app.get("/students/:id", async (req, res) => {
   res.render("student.handlebars", { student, courses });
 });
 
-// Add new assignment
+// Get course info
+app.get("/assignments/:id", async (req, res) => {
+  const { comments, ratings } = await db.getAssignmentInfo(req.params.id);
+  console.log(ratings);
+  res.render("assignment.handlebars", { comments, ratings });
+});
+
+// Add new class
 app.post("/", async (req, res) => {
   await db.insert("Classes", req.body);
   res.redirect("/");

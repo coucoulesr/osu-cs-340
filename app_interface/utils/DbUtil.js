@@ -20,18 +20,16 @@ class db {
         console.log("Database connection successful.");
         return true;
       } catch (pingErr) {
-        console.error(
+        throw new Error(
           "Error in connected database configuration: ",
           pingErr.message
         );
-        return false;
       }
     } catch (connectionErr) {
-      console.error(
+      throw new Error(
         "Error establishing database connection: ",
         connectionErr.message
       );
-      return false;
     }
   }
 
@@ -142,6 +140,67 @@ class db {
         [studentId]
       );
       return output;
+    } catch (e) {
+      console.error("db.getCoursesWithStudent error: ", e);
+      throw e;
+    }
+  }
+
+  async getAssignmentInfo(assignmentId) {
+    try {
+      const comments = await this.pool.query(
+        "SELECT s.first_name, s.last_name, c.*, COUNT(v.value) AS votes, SUM(v.value) AS score FROM Comments c " +
+          "INNER JOIN Votes v ON v.comment_id=c.id " +
+          "INNER JOIN Assignments a ON a.id=c.assignment_id " +
+          "INNER JOIN Students s ON s.id=c.author_id " +
+          "WHERE a.id=? " +
+          "GROUP BY c.id;",
+        [assignmentId]
+      );
+      const ratings = {
+        difficulty: { upvotes: 0, midvotes: 0, downvotes: 0 },
+        usefulness: { upvotes: 0, midvotes: 0, downvotes: 0 },
+        satisfaction: { upvotes: 0, midvotes: 0, downvotes: 0 },
+      };
+      const upvotes = await this.pool.query(
+        "SELECT COUNT(*) as count, category FROM Ratings " +
+          "WHERE assignment_id=? AND score=1 " +
+          "GROUP BY category;",
+        [assignmentId]
+      );
+      for (let row of upvotes) {
+        ratings[row.category] = {
+          ...ratings[row.category],
+          upvotes: row.count,
+        };
+      }
+
+      const midvotes = await this.pool.query(
+        "SELECT COUNT(*) as count, category FROM Ratings " +
+          "WHERE assignment_id=? AND score=0 " +
+          "GROUP BY category;",
+        [assignmentId]
+      );
+      for (let row of midvotes) {
+        ratings[row.category] = {
+          ...ratings[row.category],
+          midvotes: row.count,
+        };
+      }
+
+      const downvotes = await this.pool.query(
+        "SELECT COUNT(*) as count, category FROM Ratings " +
+          "WHERE assignment_id=? AND score=-1 " +
+          "GROUP BY category;",
+        [assignmentId]
+      );
+      for (let row of downvotes) {
+        ratings[row.category] = {
+          ...ratings[row.category],
+          downvotes: row.count,
+        };
+      }
+      return { comments, ratings };
     } catch (e) {
       console.error("db.getCoursesWithStudent error: ", e);
       throw e;
