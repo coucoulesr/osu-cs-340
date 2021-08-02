@@ -49,7 +49,7 @@ CREATE TABLE Ratings
         ON UPDATE CASCADE,
     FOREIGN KEY (author_id) REFERENCES Students (id)
         ON DELETE CASCADE
-        ON UPDATE CASCADE
+        ON UPDATE CASCADE,
     CHECK (category IN ('difficulty', 'helpfulness', 'satisfaction')),
     UNIQUE (assignment_id, author_id, category)
 );
