@@ -165,10 +165,13 @@
         <div class="pt-2 mx-4">
           <h1 class="text-2xl font-bold">Write a Review</h1>
           <div class="mx-4 my-2">
-            <form id="new-review" method="POST" onsubmit="return false;">
+            <form id="new-review" action="/create-review" method="POST">
+              <input type="number" name="assignment_id" class="hidden" value={{assignment.id}} />
+              <input type="number" name="author_id" class="hidden" value="1000" />
               <textarea
                 id="review-text"
                 class="w-full h-40 px-1 rounded"
+                name="body"
               ></textarea>
               <span class="flex justify-end w-full">
                 <input

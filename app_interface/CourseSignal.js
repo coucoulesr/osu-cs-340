@@ -66,8 +66,12 @@ app.get("/students/:id", async (req, res) => {
 // Get course info
 app.get("/assignments/:id", async (req, res) => {
   const { comments, ratings } = await db.getAssignmentInfo(req.params.id);
-  console.log(ratings);
-  res.render("assignment.handlebars", { comments, ratings });
+  console.log(comments);
+  res.render("assignment.handlebars", {
+    assignment: { id: req.params.id },
+    comments,
+    ratings,
+  });
 });
 
 // Add new course
@@ -80,6 +84,18 @@ app.post("/create-course", async (req, res) => {
 app.post("/create-assignment", async (req, res) => {
   await db.insert("Assignments", req.body);
   res.redirect("/courses/" + req.body.class_id);
+});
+
+// Add new assignment
+app.post("/create-review", async (req, res) => {
+  await db.insert("Comments", {
+    ...req.body,
+    created: new Date(Date.now())
+      .toISOString()
+      .replace("T", " ")
+      .replace("Z", ""),
+  });
+  res.redirect("/assignments/" + req.body.assignment_id);
 });
 
 // Delete course by id
