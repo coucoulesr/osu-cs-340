@@ -65,35 +65,35 @@ VALUES
 INSERT INTO Ratings (score, category, assignment_id, author_id)
 VALUES
     (1, "difficulty", (SELECT id FROM Assignments WHERE title="Python Hello World"), (SELECT id FROM Students WHERE pin=1)),
-    (0, "helpfulness", (SELECT id FROM Assignments WHERE title="Python Hello World"), (SELECT id FROM Students WHERE pin=1)),
+    (0, "usefulness", (SELECT id FROM Assignments WHERE title="Python Hello World"), (SELECT id FROM Students WHERE pin=1)),
     (1, "satisfaction", (SELECT id FROM Assignments WHERE title="Python Hello World"), (SELECT id FROM Students WHERE pin=1)),
 
     (1, "difficulty", (SELECT id FROM Assignments WHERE title="For and While Loops"), (SELECT id FROM Students WHERE pin=1)),
-    (1, "helpfulness", (SELECT id FROM Assignments WHERE title="For and While Loops"), (SELECT id FROM Students WHERE pin=1)),
+    (1, "usefulness", (SELECT id FROM Assignments WHERE title="For and While Loops"), (SELECT id FROM Students WHERE pin=1)),
     (-1, "satisfaction", (SELECT id FROM Assignments WHERE title="For and While Loops"), (SELECT id FROM Students WHERE pin=1)),
 
     (-1, "difficulty", (SELECT id FROM Assignments WHERE title="Python Hello World"), (SELECT id FROM Students WHERE pin=2)),
-    (0, "helpfulness", (SELECT id FROM Assignments WHERE title="Python Hello World"), (SELECT id FROM Students WHERE pin=2)),
+    (0, "usefulness", (SELECT id FROM Assignments WHERE title="Python Hello World"), (SELECT id FROM Students WHERE pin=2)),
     (1, "satisfaction", (SELECT id FROM Assignments WHERE title="Python Hello World"), (SELECT id FROM Students WHERE pin=2)),
 
     (1, "difficulty", (SELECT id FROM Assignments WHERE title="For and While Loops"), (SELECT id FROM Students WHERE pin=2)),
-    (1, "helpfulness", (SELECT id FROM Assignments WHERE title="For and While Loops"), (SELECT id FROM Students WHERE pin=2)),
+    (1, "usefulness", (SELECT id FROM Assignments WHERE title="For and While Loops"), (SELECT id FROM Students WHERE pin=2)),
     (0, "satisfaction", (SELECT id FROM Assignments WHERE title="For and While Loops"), (SELECT id FROM Students WHERE pin=2)),
 
     (-1, "difficulty", (SELECT id FROM Assignments WHERE title="Python Hello World"), (SELECT id FROM Students WHERE pin=5)),
-    (-1, "helpfulness", (SELECT id FROM Assignments WHERE title="Python Hello World"), (SELECT id FROM Students WHERE pin=5)),
+    (-1, "usefulness", (SELECT id FROM Assignments WHERE title="Python Hello World"), (SELECT id FROM Students WHERE pin=5)),
     (0, "satisfaction", (SELECT id FROM Assignments WHERE title="Python Hello World"), (SELECT id FROM Students WHERE pin=5)),
 
     (0, "difficulty", (SELECT id FROM Assignments WHERE title="For and While Loops"), (SELECT id FROM Students WHERE pin=5)),
-    (-1, "helpfulness", (SELECT id FROM Assignments WHERE title="For and While Loops"), (SELECT id FROM Students WHERE pin=5)),
+    (-1, "usefulness", (SELECT id FROM Assignments WHERE title="For and While Loops"), (SELECT id FROM Students WHERE pin=5)),
     (-1, "satisfaction", (SELECT id FROM Assignments WHERE title="For and While Loops"), (SELECT id FROM Students WHERE pin=5)),
 
     (1, "difficulty", (SELECT id FROM Assignments WHERE title="Python Hello World"), (SELECT id FROM Students WHERE pin=8)),
-    (1, "helpfulness", (SELECT id FROM Assignments WHERE title="Python Hello World"), (SELECT id FROM Students WHERE pin=8)),
+    (1, "usefulness", (SELECT id FROM Assignments WHERE title="Python Hello World"), (SELECT id FROM Students WHERE pin=8)),
     (0, "satisfaction", (SELECT id FROM Assignments WHERE title="Python Hello World"), (SELECT id FROM Students WHERE pin=8)),
     
     (0, "difficulty", (SELECT id FROM Assignments WHERE title="For and While Loops"), (SELECT id FROM Students WHERE pin=8)),
-    (1, "helpfulness", (SELECT id FROM Assignments WHERE title="For and While Loops"), (SELECT id FROM Students WHERE pin=8)),
+    (1, "usefulness", (SELECT id FROM Assignments WHERE title="For and While Loops"), (SELECT id FROM Students WHERE pin=8)),
     (1, "satisfaction", (SELECT id FROM Assignments WHERE title="For and While Loops"), (SELECT id FROM Students WHERE pin=8));
 
 INSERT INTO Comments (body, created, author_id, assignment_id)
