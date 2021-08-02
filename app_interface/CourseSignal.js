@@ -70,10 +70,16 @@ app.get("/assignments/:id", async (req, res) => {
   res.render("assignment.handlebars", { comments, ratings });
 });
 
-// Add new class
-app.post("/", async (req, res) => {
+// Add new course
+app.post("/create-course", async (req, res) => {
   await db.insert("Classes", req.body);
   res.redirect("/");
+});
+
+// Add new assignment
+app.post("/create-assignment", async (req, res) => {
+  await db.insert("Assignments", req.body);
+  res.redirect("/courses/" + req.body.class_id);
 });
 
 // Delete course by id

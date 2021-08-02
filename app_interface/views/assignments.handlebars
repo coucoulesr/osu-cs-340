@@ -33,12 +33,13 @@
                             <button id = "modal_close" class = "text-white">x</button>
                         </div>
 
-                        <form id="add-assignment" method="POST" onsubmit="return false;" class = "flex flex-col items-center justify-center">
+                        <form id="add-assignment" action="/create-assignment" method="POST" class="flex flex-col items-center justify-center">
                             <div class = "m-4">
                                 <label for="title" class="w-32 mr-2 text-right">
                                     Title:
                                 </label>
-                                <input type="text" id="title" name="title" placeholder="HW 1 - Sample Title" class = "shadow focus:outline-none focus:placeholder-transparent"/>
+                                <input type="text" id="title" name="title" placeholder="HW 1 - Sample Title" class="shadow focus:outline-none focus:placeholder-transparent"/>
+                                <input type="text" id="class-id" name="class_id" class="hidden" value="{{course.id}}" />
                             </div>
                             <input class="self-end p-2 mx-4 text-white bg-indigo-400 shadow rounded-xl" type="submit" value="Add Assignment" />
                         </form>
