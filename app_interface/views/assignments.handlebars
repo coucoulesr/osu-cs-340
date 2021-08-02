@@ -91,7 +91,7 @@
                 {{!-- Students List --}}
                 <ul>
                     {{#each students}}
-                      <li>{{this.first_name}} {{this.last_name}}</li>
+                      <li><a href="/students/{{this.id}}">{{this.first_name}} {{this.last_name}}</a></li>
                     {{/each}}
                 </ul>
 

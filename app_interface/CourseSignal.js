@@ -30,7 +30,7 @@ const db = new dbUtil({
 
 // ---------- ROUTING ----------
 
-// Main page
+// Main page (get all courses)
 app.get("/", async (req, res) => {
   const courses = await db.select("Classes");
   res.render("courses.handlebars", { courses });
@@ -45,6 +45,22 @@ app.get("/courses/:id", async (req, res) => {
   const students = await db.getStudentsInCourse(course.id);
   const assignments = await db.getAssignmentsInCourse(course.id);
   res.render("assignments.handlebars", { course, students, assignments });
+});
+
+// Get all students
+app.get("/students", async (req, res) => {
+  const students = await db.select("Students");
+  res.render("students.handlebars", { students });
+});
+
+// Get student info
+app.get("/students/:id", async (req, res) => {
+  const [student] = await db.select("Students", {
+    filters: ["id=?"],
+    filterParams: [req.params.id],
+  });
+  const courses = await db.getCoursesWithStudent(student.id);
+  res.render("student.handlebars", { student, courses });
 });
 
 // Add new assignment

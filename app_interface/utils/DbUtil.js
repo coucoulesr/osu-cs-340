@@ -131,6 +131,22 @@ class db {
       throw e;
     }
   }
+
+  async getCoursesWithStudent(studentId) {
+    try {
+      const output = await this.pool.query(
+        "SELECT c.* FROM Students s " +
+          "INNER JOIN Students_Classes sc ON sc.student_id=s.id " +
+          "INNER JOIN Classes c ON c.id=sc.class_id " +
+          "WHERE s.id=?;",
+        [studentId]
+      );
+      return output;
+    } catch (e) {
+      console.error("db.getCoursesWithStudent error: ", e);
+      throw e;
+    }
+  }
 }
 
 module.exports = db;
