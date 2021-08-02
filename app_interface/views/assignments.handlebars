@@ -1,16 +1,16 @@
-<link rel = "stylesheet" href = "stylesheets/modal.css">
+<link rel = "stylesheet" href = "/stylesheets/modal.css">
 
 {{!-- Wrapper --}}
 <div class="flex flex-col items-center justify-center">
     {{!-- Main Div--}}
     <div class = "flex flex-col justify-center w-4/6">
 
-        <h1 class="text-5xl my-2">{{subject}} - {{course_number}}: {{course}} - {{section}}</h1>
+        <h1 class="my-2 text-5xl">{{course.subject}}{{course.course_number}}: {{course.title}} - {{course.section}}</h1>
 
         {{!-- Tabs --}}
         <div class="flex flex-row">
-            <h2 class="bg-blue-50 p-2 rounded-t-2xl w-32 text-center tab">Assignments</h2>
-            <h2 class="bg-blue-50 p-2 rounded-t-2xl w-32 text-center tab">Students</h2>
+            <h2 class="w-32 p-2 text-center bg-blue-50 rounded-t-2xl tab">Assignments</h2>
+            <h2 class="w-32 p-2 text-center bg-blue-50 rounded-t-2xl tab">Students</h2>
         </div>
 
         {{!-- Assignments Div--}}
@@ -20,31 +20,39 @@
             <div class="p-4 bg-blue-50 tab_contents">
 
                 {{!-- Add-assignment button --}}
-                <button id = "modal_open" class = "bg-indigo-400 text-white rounded-2xl shadow mx-4 w-56 h-14">
+                <button id = "modal_open" class = "w-56 mx-4 text-white bg-indigo-400 shadow rounded-2xl h-14">
                     Add Assignment
                 </button>
 
                 {{!-- Add-assignment modal --}}
                 <div id = "modal" class = "modal">
                     
-                    <div class="bg-blue-100 w-96 justify-self-center h-32 flex-col">
-                        <div class = "bg-indigo-400 w-full flex justify-between px-4 text-lg text-white">
+                    <div class="flex-col h-32 bg-blue-100 w-96 justify-self-center">
+                        <div class = "flex justify-between w-full px-4 text-lg text-white bg-indigo-400">
                             <h1 class = >Add an Assignment</h2>
                             <button id = "modal_close" class = "text-white">x</button>
                         </div>
 
-                        <form id="add-assignment" method="POST" onsubmit="return false;" class = "flex flex-col justify-center items-center">
+                        <form id="add-assignment" action="/create-assignment" method="POST" class="flex flex-col items-center justify-center">
                             <div class = "m-4">
                                 <label for="title" class="w-32 mr-2 text-right">
                                     Title:
                                 </label>
-                                <input type="text" id="title" name="title" placeholder="HW 1 - Sample Title" class = "focus:outline-none focus:placeholder-transparent shadow"/>
+                                <input type="text" id="title" name="title" placeholder="HW 1 - Sample Title" class="shadow focus:outline-none focus:placeholder-transparent"/>
+                                <input type="text" id="class-id" name="class_id" class="hidden" value="{{course.id}}" />
                             </div>
-                            <input class="p-2 bg-indigo-400 text-white rounded-xl shadow self-end mx-4" type="submit" value="Add Assignment" />
+                            <input class="self-end p-2 mx-4 text-white bg-indigo-400 shadow rounded-xl" type="submit" value="Add Assignment" />
                         </form>
                     </div>
 
                 </div>
+                
+                {{!-- Assignments List --}}
+                <ul>
+                    {{#each assignments}}
+                        <li><a href="/assignments/{{this.id}}">{{this.title}}</a></li>
+                    {{/each}}
+                </ul>
 
             </div>
         </div>
@@ -56,30 +64,37 @@
             <div class="p-4 bg-blue-50">
 
                 {{!-- Add-Students button --}}
-                <button id = "modal_open" class = "bg-indigo-400 text-white rounded-2xl shadow mx-4 w-56 h-14">
+                <button id = "modal_open" class = "w-56 mx-4 text-white bg-indigo-400 shadow rounded-2xl h-14">
                     Add Student to Course
                 </button>
 
                 {{!-- Add-Students modal --}}
                 <div id = "modal" class = "modal">
-                    <div class="bg-blue-100 w-96 justify-self-center h-32 flex-col">
-                        <div class = "bg-indigo-400 w-full flex justify-between px-4 text-lg text-white">
+                    <div class="flex-col h-32 bg-blue-100 w-96 justify-self-center">
+                        <div class = "flex justify-between w-full px-4 text-lg text-white bg-indigo-400">
                             <h1 class = >Add Student to Course</h2>
                             <button id = "modal_close" class = "text-white">x</button>
                         </div>
 
-                        <form id="add-assignment" method="POST" onsubmit="return false;" class = "flex flex-col justify-center items-center">
+                        <form id="add-assignment" method="POST" onsubmit="return false;" class = "flex flex-col items-center justify-center">
                             <div class = "m-4">
                                 <label for="title" class="w-32 mr-2 text-right">
                                 Title:
                                 </label>
-                                <input type="text" id="title" name="title" placeholder="HW 1 - Sample Title" class = "focus:outline-none focus:placeholder-transparent shadow"/>
+                                <input type="text" id="title" name="title" placeholder="HW 1 - Sample Title" class = "shadow focus:outline-none focus:placeholder-transparent"/>
                             </div>
-                            <input class="p-2 bg-indigo-400 text-white rounded-xl shadow self-end mx-4" type="submit" value="Add Student" />
+                            <input class="self-end p-2 mx-4 text-white bg-indigo-400 shadow rounded-xl" type="submit" value="Add Student" />
                         </form>
                     </div>
 
                 </div>
+
+                {{!-- Students List --}}
+                <ul>
+                    {{#each students}}
+                      <li><a href="/students/{{this.id}}">{{this.first_name}} {{this.last_name}}</a></li>
+                    {{/each}}
+                </ul>
 
             </div>
         </div>
@@ -90,6 +105,6 @@
 </div>
 
 
-<script src="javascripts/modal.js"></script>
-<script src="javascripts/tabs.js"></script>
+<script src="/javascripts/modal.js"></script>
+<script src="/javascripts/tabs.js"></script>
 

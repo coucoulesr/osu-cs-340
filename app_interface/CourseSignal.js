@@ -4,7 +4,7 @@ var express = require("express");
 var path = require("path");
 var handlebars = require("express-handlebars").create();
 const dbUtil = require("./utils/DbUtil");
-const { fileURLToPath } = require('url');
+const { fileURLToPath } = require("url");
 
 // Initialize express
 var app = express();
@@ -30,21 +30,70 @@ const db = new dbUtil({
 
 // ---------- ROUTING ----------
 
-// Main page
-app.get("/", function (req, res) {
-  res.render("classes.handlebars");
+// Main page (get all courses)
+app.get("/", async (req, res) => {
+  const courses = await db.select("Classes");
+  res.render("courses.handlebars", { courses });
 });
 
-app.get("/classes", async (req, res) => {
-  res.status(200).send(await db.getClasses());
+// Get course info
+app.get("/courses/:id", async (req, res) => {
+  const [course] = await db.select("Classes", {
+    filters: ["id=?"],
+    filterParams: [req.params.id],
+  });
+  const students = await db.getStudentsInCourse(course.id);
+  const assignments = await db.getAssignmentsInCourse(course.id);
+  res.render("assignments.handlebars", { course, students, assignments });
 });
 
-// Course page
-app.get('/test', function(req, res){
-    res.render('assignments.handlebars')
-})
+// Get all students
+app.get("/students", async (req, res) => {
+  const students = await db.select("Students");
+  res.render("students.handlebars", { students });
+});
 
+// Get student info
+app.get("/students/:id", async (req, res) => {
+  const [student] = await db.select("Students", {
+    filters: ["id=?"],
+    filterParams: [req.params.id],
+  });
+  const courses = await db.getCoursesWithStudent(student.id);
+  res.render("student.handlebars", { student, courses });
+});
 
+// Get course info
+app.get("/assignments/:id", async (req, res) => {
+  const { comments, ratings } = await db.getAssignmentInfo(req.params.id);
+  console.log(ratings);
+  res.render("assignment.handlebars", { comments, ratings });
+});
+
+// Add new course
+app.post("/create-course", async (req, res) => {
+  await db.insert("Classes", req.body);
+  res.redirect("/");
+});
+
+// Add new assignment
+app.post("/create-assignment", async (req, res) => {
+  await db.insert("Assignments", req.body);
+  res.redirect("/courses/" + req.body.class_id);
+});
+
+// Delete course by id
+app.delete("/delete-course/:id", async (req, res) => {
+  const result = await db.delete("Classes", {
+    filters: ["id=?"],
+    filterParams: [req.params.id],
+  });
+  if (result.affectedRows > 0) {
+    res.sendStatus(200);
+  } else {
+    res.sendStatus(404);
+  }
+});
 
 // ---------- LAUNCH ----------
 app.set("port", 4000);
