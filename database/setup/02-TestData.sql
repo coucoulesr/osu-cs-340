@@ -24,6 +24,9 @@ VALUES
     ("Foghorn", "Leghorn", 7),
     ("Speedy", "Gonzales", 8);
 
+INSERT INTO Students (id, first_name, last_name, pin)
+VALUES (1000, "System", "Administrator", -1);
+
 INSERT INTO Students_Classes
 VALUES
     ((SELECT id FROM Students WHERE pin=1), (SELECT id FROM Classes WHERE section=13898)),
