@@ -98,6 +98,14 @@ app.post("/create-review", async (req, res) => {
   res.redirect("/assignments/" + req.body.assignment_id);
 });
 
+// Add student to course
+app.post("/add-student-to-course", async (req, res) => {
+  await db.insert("Students_Classes", {
+    student_id: req.body.student_id,
+    class_id: req.body.class_id,
+  });
+  res.redirect("/courses/" + req.body.class_id);
+});
 
 // Edit assignment
 app.put("/edit-assignment/:id", async (req, res) => {
