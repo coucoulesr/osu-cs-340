@@ -70,7 +70,7 @@
 
                 {{!-- Add-Students modal --}}
                 <div id = "modal" class = "modal">
-                    <div class="flex-col h-32 bg-blue-100 w-96 justify-self-center">
+                    <div class="flex-col h-64 bg-blue-100 w-96 justify-self-center">
                         <div class = "flex justify-between w-full px-4 text-lg text-white bg-indigo-400">
                             <h1 class = >Add Student to Course</h2>
                             <button class = "text-white modal_close">x</button>
@@ -79,9 +79,21 @@
                         <form id="add-assignment" method="POST" onsubmit="return false;" class = "flex flex-col items-center justify-center">
                             <div class = "m-4">
                                 <label for="title" class="w-32 mr-2 text-right">
-                                Title:
+                                First Name:
                                 </label>
-                                <input type="text" id="title" name="title" placeholder="HW 1 - Sample Title" class = "shadow focus:outline-none focus:placeholder-transparent"/>
+                                <input type="text" id="title" name="title" placeholder="John" class = "shadow focus:outline-none focus:placeholder-transparent"/>
+                            </div>
+                            <div class = "m-4">
+                                <label for="title" class="w-32 mr-2 text-right">
+                                Last Name:
+                                </label>
+                                <input type="text" id="title" name="title" placeholder="Doe" class = "shadow focus:outline-none focus:placeholder-transparent"/>
+                            </div>
+                            <div class = "m-4">
+                                <label for="title" class="w-32 mr-2 text-right">
+                                Student ID:
+                                </label>
+                                <input type="text" id="title" name="title" placeholder="123456789" class = "shadow focus:outline-none focus:placeholder-transparent"/>
                             </div>
                             <input class="self-end p-2 mx-4 text-white bg-indigo-400 shadow rounded-xl" type="submit" value="Add Student" />
                         </form>
