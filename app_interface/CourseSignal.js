@@ -33,7 +33,7 @@ const db = new dbUtil({
 // Main page (get all courses)
 app.get("/", async (req, res) => {
   const courses = await db.select("Classes");
-  res.render("courses.handlebars", { courses });
+  res.render("classes.handlebars", { courses });
 });
 
 // Get course info
