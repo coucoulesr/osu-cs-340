@@ -18,7 +18,11 @@ const deleteButtons = document.getElementsByClassName(
 );
 
 for (button of deleteButtons) {
-  button.addEventListener("click", () => {
-    deleteCourse(button.dataset.courseId);
+  button.addEventListener("click", (e) => {
+    let target = e.target;
+    while (!target.dataset.courseId) {
+      target = target.parentElement;
+    }
+    deleteCourse(target.dataset.courseId);
   });
 }

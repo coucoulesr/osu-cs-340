@@ -86,7 +86,7 @@ app.post("/create-assignment", async (req, res) => {
   res.redirect("/courses/" + req.body.class_id);
 });
 
-// Add new assignment
+// Add new review
 app.post("/create-review", async (req, res) => {
   await db.insert("Comments", {
     ...req.body,
@@ -96,6 +96,21 @@ app.post("/create-review", async (req, res) => {
       .replace("Z", ""),
   });
   res.redirect("/assignments/" + req.body.assignment_id);
+});
+
+// Add student to course
+app.post("/add-student-to-course", async (req, res) => {
+  await db.insert("Students_Classes", {
+    student_id: req.body.student_id,
+    class_id: req.body.class_id,
+  });
+  res.redirect("/courses/" + req.body.class_id);
+});
+
+// Edit assignment
+app.put("/edit-assignment/:id", async (req, res) => {
+  await db.editAssignment(req.params.id, req.body.title);
+  res.redirect("/assignments/" + req.params.assignment_id);
 });
 
 // Delete course by id
