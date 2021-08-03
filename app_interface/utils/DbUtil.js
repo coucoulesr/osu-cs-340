@@ -202,7 +202,20 @@ class db {
       }
       return { comments, ratings };
     } catch (e) {
-      console.error("db.getCoursesWithStudent error: ", e);
+      console.error("db.getAssignmentInfo error: ", e);
+      throw e;
+    }
+  }
+
+  async editAssignment(assignmentId, title) {
+    try {
+      const output = this.pool.query(
+        "UPDATE Assignments SET title=? WHERE id=?;",
+        [title, assignmentId]
+      );
+      return output;
+    } catch (e) {
+      console.error("db.editAssignment error: ", e);
       throw e;
     }
   }
