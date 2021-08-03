@@ -15,7 +15,7 @@
     <div class="p-4 bg-blue-50">
 
       {{!-- Add-course button --}}
-      <button id = "modal_open" class = "w-56 mx-4 text-white bg-indigo-400 shadow rounded-2xl h-14">
+      <button class = "modal_open w-56 mx-4 text-white bg-indigo-400 shadow rounded-2xl h-14">
         Add Course
       </button>
 
@@ -43,11 +43,11 @@
       
 
       {{!-- Add-Class modal --}}
-      <div id = "modal" class = "modal">
+      <div class = "modal">
         <div class="bg-blue-100 w-96 justify-self-center h-72">
           <div class = "flex justify-between w-full px-4 text-lg text-white bg-indigo-400">
             <h1 class = >Add a New Course</h2>
-            <button id = "modal_close" class = "text-white">x</button>
+            <button class = "modal_close text-white">x</button>
           </div>
 
           <form id="add-course" action="/create-course" method="POST">
