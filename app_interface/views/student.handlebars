@@ -1,0 +1,12 @@
+<p>
+  {{student.id}}
+  -
+  {{student.first_name}}
+  {{student.last_name}}
+</p><br />
+<p>Courses Taken:</p>
+<ul>
+  {{#each courses}}
+    <li>{{this.subject}}{{this.course_number}} - {{this.title}}</li>
+  {{/each}}
+</ul>
