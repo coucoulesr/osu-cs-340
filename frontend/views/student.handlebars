@@ -6,18 +6,19 @@
     {{!-- Student Info Div--}}
     <div class="p-4 bg-blue-50 flex flex-col">
     {{!-- Box --}}
-    <div class="p-4 bg-blue-50"> 
-      <h2 class="ml-2 text-lg">Enrolled courses:</h2>
-      <ul>
-      {{#each courses}}
-        <li class = "bg-white h-14 border border-blue-300 shadow flex flex-row  justify-between items-center p-4 m-2 hover:bg-gray-50">
+      <h2 class="ml-4 text-lg">Enrolled courses:</h2>
+      <div class="px-2">
+        <ul>
+        {{#each courses}}
           <a class = "hover:underline" href="/courses/{{this.id}}">
-            {{this.subject}}{{this.course_number}} - {{this.title}}
-          </a>
-          </div>
-        </li>
-      {{/each}}
-      </ul>
-    </div>
+            <li class = "bg-white h-14 border border-blue-300 shadow flex flex-row justify-between items-center p-4 m-2 hover:bg-gray-50">
+              
+                {{this.subject}}{{this.course_number}} - {{this.title}}
+              
+            </li>
+            </a>
+        {{/each}}
+        </ul>
+      </div>
   </div>
 </div>
