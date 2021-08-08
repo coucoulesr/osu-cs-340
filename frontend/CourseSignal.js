@@ -4,6 +4,7 @@ var express = require("express");
 var path = require("path");
 var handlebars = require("express-handlebars").create();
 const dbUtil = require("./utils/DbUtil");
+const ratingPercents = require("./utils/RatingsUtil")
 
 // Initialize express
 var app = express();
@@ -71,10 +72,12 @@ app.get("/students/:id", async (req, res) => {
 // Get course info
 app.get("/assignments/:id", async (req, res) => {
   const { comments, ratings } = await db.getAssignmentInfo(req.params.id);
+  let percents = ratingPercents(ratings);
   res.render("assignment.handlebars", {
     assignment: { id: req.params.id },
     comments,
     ratings,
+    percents,
   });
 });
 
@@ -100,6 +103,25 @@ app.post("/create-assignment", async (req, res) => {
   await db.insert("Assignments", req.body);
   res.redirect("/courses/" + req.body.class_id);
 });
+
+// Alter ratings
+app.post("/assignments/:id/ratings", async function(req, res){
+  // req contains {category: value, score: value}
+  // Insert new values into database
+  await db.insert("Ratings", {
+    category: req.body.category,
+    score: req.body.score,
+    assignment_id: parseInt(req.params.id), // We are given a string, but an integer is needed
+    author_id: 1 // This is a default value because we did not implement using multiple users
+  });
+
+  // Get ratings from database
+  let ratings = await db.getAssignmentRatings(req.params.id)
+  let percents = ratingPercents(ratings);
+
+  // Send values back to page
+  res.send({ratings, percents})
+})
 
 // Add new comment
 app.post("/create-comment", async (req, res) => {

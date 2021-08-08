@@ -207,6 +207,58 @@ class db {
     }
   }
 
+  async getAssignmentRatings(assignmentId) {
+    try {
+      const ratings = {
+        difficulty: { upvotes: 0, midvotes: 0, downvotes: 0 },
+        usefulness: { upvotes: 0, midvotes: 0, downvotes: 0 },
+        satisfaction: { upvotes: 0, midvotes: 0, downvotes: 0 },
+      };
+      const upvotes = await this.pool.query(
+        "SELECT COUNT(*) as count, category FROM Ratings " +
+          "WHERE assignment_id=? AND score=1 " +
+          "GROUP BY category;",
+        [assignmentId]
+      );
+      for (let row of upvotes) {
+        ratings[row.category] = {
+          ...ratings[row.category],
+          upvotes: row.count,
+        };
+      }
+
+      const midvotes = await this.pool.query(
+        "SELECT COUNT(*) as count, category FROM Ratings " +
+          "WHERE assignment_id=? AND score=0 " +
+          "GROUP BY category;",
+        [assignmentId]
+      );
+      for (let row of midvotes) {
+        ratings[row.category] = {
+          ...ratings[row.category],
+          midvotes: row.count,
+        };
+      }
+
+      const downvotes = await this.pool.query(
+        "SELECT COUNT(*) as count, category FROM Ratings " +
+          "WHERE assignment_id=? AND score=-1 " +
+          "GROUP BY category;",
+        [assignmentId]
+      );
+      for (let row of downvotes) {
+        ratings[row.category] = {
+          ...ratings[row.category],
+          downvotes: row.count,
+        };
+      }
+      return { ratings };
+    } catch (e) {
+      console.error("db.getAssignmentInfo error: ", e);
+      throw e;
+    }
+  }
+
   async editCourse(courseId, title) {
     try {
       const output = this.pool.query("UPDATE Classes SET title=? WHERE id=?;", [

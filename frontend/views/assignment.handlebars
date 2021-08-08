@@ -15,18 +15,21 @@
               <div class="flex flex-row justify-evenly">
                 <div class="flex flex-col items-center justify-center">
                   <button
+                    id = "rate_easy"
                     class="flex w-12 h-12 bg-blue-300 rounded-full shadow-md"
                   ></button>
                   <span>Easy</span>
                 </div>
                 <div class="flex flex-col items-center justify-center">
                   <button
+                    id = "rate_medium"
                     class="flex w-12 h-12 bg-blue-500 rounded-full shadow-md"
                   ></button>
                   <span>Medium</span>
                 </div>
                 <div class="flex flex-col items-center justify-center">
                   <button
+                    id = "rate_hard"
                     class="flex w-12 h-12 bg-blue-900 rounded-full shadow-md"
                   ></button>
                   <span>Hard</span>
@@ -34,23 +37,22 @@
               </div>
             </div>
 
-            <!-- For future the ratings bar should be dynamic. Hard coded here for demonstration -->
             <div id="Display Difficulty Ratings" class="w-2/3 mx-2">
               <h3 class="flex justify-center mb-4 text-xl uppercase">
                 Classmate's Ratings
               </h3>
               <div
                 id="Difficulty Bar"
-                class="flex flex-row w-full h-6 rounded-full shadow-sm"
+                class="flex flex-row w-full h-6 shadow-sm"
               >
-                <div class="w-1/3 h-full bg-blue-300 rounded-l-full"></div>
-                <div class="w-1/3 h-full bg-blue-500"></div>
-                <div class="w-1/3 h-full bg-blue-900 rounded-r-full"></div>
+                <div class="h-full bg-blue-300" style="width: {{percents.difficulty.downPercent}}%"></div>
+                <div class="h-full bg-blue-500" style="width: {{percents.difficulty.midPercent}}%"></div>
+                <div class="h-full bg-blue-900" style="width: {{percents.difficulty.upPercent}}%"></div>
               </div>
-              <div class="flex flex-row w-full rounded-full">
-                <p class="flex justify-center w-1/3">{{ratings.difficulty.downvotes}}</p>
-                <p class="flex justify-center w-1/3">{{ratings.difficulty.midvotes}}</p>
-                <p class="flex justify-center w-1/3">{{ratings.difficulty.upvotes}}</p>
+              <div class="flex flex-row w-full">
+                <p class="flex justify-center" style="width: {{percents.difficulty.downPercent}}%">{{ratings.difficulty.downvotes}}</p>
+                <p class="flex justify-center" style="width: {{percents.difficulty.midPercent}}%">{{ratings.difficulty.midvotes}}</p>
+                <p class="flex justify-center" style="width: {{percents.difficulty.upPercent}}%">{{ratings.difficulty.upvotes}}</p>
               </div>
             </div>
           </form>
@@ -66,18 +68,21 @@
               <div class="flex flex-row justify-evenly">
                 <div class="flex flex-col items-center justify-center">
                   <button
+                    id = "rate_waste"
                     class="flex w-12 h-12 bg-purple-300 rounded-full shadow-md"
                   ></button>
                   <span>Waste</span>
                 </div>
                 <div class="flex flex-col items-center justify-center">
                   <button
+                    id = "rate_practice"
                     class="flex w-12 h-12 bg-purple-500 rounded-full shadow-md"
                   ></button>
                   <span>Practice</span>
                 </div>
                 <div class="flex flex-col items-center justify-center">
                   <button
+                  id = "rate_helpful"
                     class="flex w-12 h-12 bg-purple-900 rounded-full shadow-md"
                   ></button>
                   <span>Helpful</span>
@@ -91,16 +96,16 @@
               </h3>
               <div
                 id="Usefulness Bar"
-                class="flex flex-row w-full h-6 rounded-full shadow-sm"
+                class="flex flex-row w-full h-6 shadow-sm"
               >
-                <div class="w-1/6 h-full bg-purple-300 rounded-l-full"></div>
-                <div class="w-1/6 h-full bg-purple-500"></div>
-                <div class="w-4/6 h-full bg-purple-900 rounded-r-full"></div>
+                <div class="h-full bg-purple-300" style="width: {{percents.usefulness.downPercent}}%"></div>
+                <div class="h-full bg-purple-500" style="width: {{percents.usefulness.midPercent}}%"></div>
+                <div class="h-full bg-purple-900" style="width: {{percents.usefulness.upPercent}}%"></div>
               </div>
-              <div class="flex flex-row w-full rounded-full">
-                <p class="flex justify-center w-1/6">{{ratings.usefulness.downvotes}}</p>
-                <p class="flex justify-center w-1/6">{{ratings.usefulness.midvotes}}</p>
-                <p class="flex justify-center w-4/6">{{ratings.usefulness.upvotes}}</p>
+              <div class="flex flex-row w-full">
+                <p class="flex justify-center" style="width: {{percents.usefulness.downPercent}}%">{{ratings.usefulness.downvotes}}</p>
+                <p class="flex justify-center" style="width: {{percents.usefulness.midPercent}}%">{{ratings.usefulness.midvotes}}</p>
+                <p class="flex justify-center" style="width: {{percents.usefulness.upPercent}}%">{{ratings.usefulness.upvotes}}</p>
               </div>
             </div>
           </form>
@@ -119,18 +124,21 @@
               <div class="flex flex-row justify-evenly">
                 <div class="flex flex-col items-center justify-center">
                   <button
+                    id = "rate_hated"
                     class="flex w-12 h-12 bg-pink-300 rounded-full shadow-md"
                   ></button>
                   <span>Hated</span>
                 </div>
                 <div class="flex flex-col items-center justify-center">
                   <button
+                    id = "rate_eh"
                     class="flex w-12 h-12 bg-pink-500 rounded-full shadow-md"
                   ></button>
                   <span>Eh...</span>
                 </div>
                 <div class="flex flex-col items-center justify-center">
                   <button
+                    id = "rate_loved"
                     class="flex w-12 h-12 bg-pink-900 rounded-full shadow-md"
                   ></button>
                   <span>Loved</span>
@@ -144,16 +152,16 @@
               </h3>
               <div
                 id="Satisfaction Bar"
-                class="flex flex-row w-full h-6 rounded-full shadow-sm"
+                class="flex flex-row w-full h-6 shadow-sm"
               >
-                <div class="w-1/6 h-full bg-pink-300 rounded-l-full"></div>
-                <div class="w-4/6 h-full bg-pink-500"></div>
-                <div class="w-1/6 h-full bg-pink-900 rounded-r-full"></div>
+                <div class="h-full bg-pink-300" style="width: {{percents.satisfaction.downPercent}}%"></div>
+                <div class="h-full bg-pink-500" style="width: {{percents.satisfaction.midPercent}}%"></div>
+                <div class="h-full bg-pink-900" style="width: {{percents.satisfaction.upPercent}}%"></div>
               </div>
-              <div class="flex flex-row w-full rounded-full">
-                <p class="flex justify-center w-1/6">{{ratings.satisfaction.downvotes}}</p>
-                <p class="flex justify-center w-4/6">{{ratings.satisfaction.midvotes}}</p>
-                <p class="flex justify-center w-1/6">{{ratings.satisfaction.upvotes}}</p>
+              <div class="flex flex-row w-full">
+                <p class="flex justify-center" style="width: {{percents.satisfaction.downPercent}}%">{{ratings.satisfaction.downvotes}}</p>
+                <p class="flex justify-center" style="width: {{percents.satisfaction.midPercent}}%">{{ratings.satisfaction.midvotes}}</p>
+                <p class="flex justify-center" style="width: {{percents.satisfaction.upPercent}}%">{{ratings.satisfaction.upvotes}}</p>
               </div>
             </div>
           </form>
@@ -236,3 +244,4 @@
       </div>
 
 <script src="/javascripts/delete-comment.js"></script>
+<script src="/javascripts/update-ratings.js"></script>
