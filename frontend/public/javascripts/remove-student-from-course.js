@@ -19,11 +19,11 @@ const removeStudentFromCourse = async (student_id, class_id) => {
   }
 };
 
-const deleteButtons = document.getElementsByClassName(
+const removeButtons = document.getElementsByClassName(
   "js-remove-student-button"
 );
 
-for (button of deleteButtons) {
+for (button of removeButtons) {
   button.addEventListener("click", (e) => {
     let target = e.target;
     while (!target.dataset.studentId) {

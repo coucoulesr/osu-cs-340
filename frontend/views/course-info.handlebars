@@ -54,7 +54,7 @@
                             <a class = "hover:underline" href="/assignments/{{this.id}}">{{this.title}}</a>
                             <div class = "flex flex-row justify-between w-20 text-blue-500 hover:text-blue-800">
                                 <button class = "modal_open">Edit</button>
-                                <button class="js-delete-assignment-button" data-course-id="{{this.id}}">
+                                <button class="js-delete-assignment-button" data-assignment-id="{{this.id}}">
                                 <svg 
                                     viewBox="-40 0 427 427.00131" 
                                     xmlns="http://www.w3.org/2000/svg"
@@ -76,13 +76,15 @@
                                     <button class = "modal_close text-white">x</button>
                                 </div>
 
-                                <form id="edit-course" action="/edit-assignment/{{this.id}}" method="PUT">
+                                <form id="edit-course" action="/edit-assignment/{{this.id}}" method="POST">
                                     <div class="inline-flex flex-col p-4 space-y-4 bg-blue-100">
+                                    <input type="text" name="redirect" value="/courses/{{../course.id}}" class="hidden">
                                     <div>
-                                        <label for="title" class="inline-block w-32 mr-2 text-right">
+                                        <label for="edit-title" class="inline-block w-32 mr-2 text-right">
                                         Title:
                                         </label>
-                                        <input type="text" id="title" name="title" placeholder="{{this.title}}" class="shadow focus:outline-none focus:placeholder-transparent"/>
+                                        <input type="text" id="edit-title" name="title" value="{{this.title}}" class="shadow focus:outline-none focus:placeholder-transparent"/>
+                                    </div>
                                     <input class="self-end p-2 text-white bg-indigo-400 shadow rounded-xl" type="submit" value="Update Assignment" />
                                     </div>
                                 </form>
@@ -165,3 +167,4 @@
 <script src="/javascripts/tabs.js"></script>
 <script src="/javascripts/remove-student-from-course.js"></script>
 <script src="/javascripts/populate-student-select.js"></script>
+<script src="/javascripts/delete-assignment.js"></script>

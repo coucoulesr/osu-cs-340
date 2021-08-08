@@ -131,7 +131,7 @@ app.post("/edit-student/:id", async (req, res) => {
 // Edit assignment
 app.post("/edit-assignment/:id", async (req, res) => {
   await db.editAssignment(req.params.id, req.body.title);
-  res.redirect("/assignments");
+  res.redirect(req.body.redirect || "/");
 });
 
 // Delete course by id
@@ -150,6 +150,19 @@ app.delete("/delete-course/:id", async (req, res) => {
 // Delete student by id
 app.delete("/delete-student/:id", async (req, res) => {
   const result = await db.delete("Students", {
+    filters: ["id=?"],
+    filterParams: [req.params.id],
+  });
+  if (result.affectedRows > 0) {
+    res.sendStatus(200);
+  } else {
+    res.sendStatus(404);
+  }
+});
+
+// Delete course by id
+app.delete("/delete-assignment/:id", async (req, res) => {
+  const result = await db.delete("Assignments", {
     filters: ["id=?"],
     filterParams: [req.params.id],
   });
