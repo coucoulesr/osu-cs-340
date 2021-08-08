@@ -4,7 +4,6 @@ var express = require("express");
 var path = require("path");
 var handlebars = require("express-handlebars").create();
 const dbUtil = require("./utils/DbUtil");
-const { fileURLToPath } = require("url");
 
 // Initialize express
 var app = express();
@@ -20,11 +19,17 @@ app.use(express.static(path.join(__dirname, "public"))); // App will get static 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+const DATABASE_HOST = process.env.COURSESIGNAL_DB_HOST || "coursesignal_db";
+const DATABASE_USER = process.env.COURSESIGNAL_DB_USER || "root";
+const DATABASE_PASSWORD = process.env.COURSESIGNAL_DB_PASSWORD || "";
+const DATABASE_NAME = process.env.COURSESIGNAL_DB_NAME || "test";
+
 // Set up database connection
 const db = new dbUtil({
-  host: "coursesignal_db",
-  user: "root",
-  database: "test",
+  host: DATABASE_HOST,
+  user: DATABASE_USER,
+  password: DATABASE_PASSWORD,
+  database: DATABASE_NAME,
   connectionLimit: 5,
 });
 
