@@ -66,7 +66,6 @@ app.get("/students/:id", async (req, res) => {
 // Get course info
 app.get("/assignments/:id", async (req, res) => {
   const { comments, ratings } = await db.getAssignmentInfo(req.params.id);
-  console.log(comments);
   res.render("assignment.handlebars", {
     assignment: { id: req.params.id },
     comments,
