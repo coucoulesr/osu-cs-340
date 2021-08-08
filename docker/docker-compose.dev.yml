@@ -5,5 +5,5 @@ services:
       MARIADB_DATABASE: "test"
   coursesignal_server:
     volumes:
-      - ../app_interface:/usr/src/coursesignal
+      - ../frontend:/usr/src/coursesignal
     command: ["npx", "nodemon", "--legacy-watch", "CourseSignal.js"]

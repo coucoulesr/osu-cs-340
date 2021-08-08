@@ -7,8 +7,10 @@ services:
       MARIADB_ROOT_PASSWORD: "${COURSESIGNAL_DB_PASSWORD}"
       MARIADB_DATABASE: "CourseSignal"
     labels:
-      service-name: coursesignal_db
+      container_name: coursesignal_db
   coursesignal_server:
-    build: ../app_interface
+    build: ../frontend
     ports:
       - "4000:4000"
+    labels:
+      container_name: coursesignal_server

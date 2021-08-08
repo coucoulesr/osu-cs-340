@@ -23,5 +23,13 @@ The container is set up to mirror the contents of `/var/lib/mysql` onto the host
 To explore the database in the command line, while `docker-compose` is running, open another terminal and run
 
 ```bash
-docker exec -it (docker ps --filter "label=service-name=coursesignal_db" -q) mysql
+docker exec -it (docker ps --filter "label=container_name=coursesignal_db" -q) mysql
+```
+
+### Build Issues
+
+If the CourseSignal service is having trouble finding dependencies (e.g. `express`, `nodemon`, etc.), try rebuilding the containers by running `docker-compose build` from the `docker` directory and restarting Docker compose. If you still run into dependency issues, try deleting the `node_modules` directory from within the `frontend` directory and installing dependencies from inside the frontend container:
+
+```bash
+docker exec -it (docker ps --filter "label=container_name=coursesignal_service" -q) npm install
 ```
