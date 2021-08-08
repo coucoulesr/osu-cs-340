@@ -11,7 +11,7 @@ for (var i = 1; i < tabs.length; i++){
     tabs[i].style.boxShadow =  "0 -5px 5px #DBEAFE inset"
 }
 
-// Scream in frustration at confusing closure loops
+// Define function for handling what happens when a tab is clicked
 function generateHandlers(){
     var handlers = [];
     for (var i = 0; i < tabs.length; i++){
@@ -25,8 +25,9 @@ function generateHandlers(){
                         tabs[j].style.boxShadow =  "0 -5px 5px #DBEAFE inset"
                     }
 
-                    // Display selected tab
+                    // Display clicked on tab
                     tab_contents[i].style.display = "flex"
+                    tab_contents[i].style.flexDirection = "column"
                     tabs[i].style.boxShadow = ""
                 }
             };
@@ -35,6 +36,7 @@ function generateHandlers(){
     return handlers;
 }
 
+// Add handler for very tab
 handlers = generateHandlers();
 for (var i = 0; i < handlers.length; i++){
     handlers[i]()
