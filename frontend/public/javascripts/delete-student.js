@@ -4,7 +4,7 @@ const deleteStudent = async (id) => {
       method: "DELETE",
     });
     if (response.ok) {
-      window.location.replace("/");
+      window.location.replace("/students");
     } else {
       throw new Error("deleteStudent response error: HTTP ", response.status);
     }
@@ -20,7 +20,6 @@ const deleteButtons = document.getElementsByClassName(
 for (button of deleteButtons) {
   button.addEventListener("click", (e) => {
     let target = e.target;
-    console.log(e.target);
     while (!target.dataset.studentId) {
       target = target.parentElement;
     }

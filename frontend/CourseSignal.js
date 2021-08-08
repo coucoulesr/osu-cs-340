@@ -151,7 +151,7 @@ app.delete("/delete-student/:id", async (req, res) => {
     filterParams: [req.params.id],
   });
   if (result.affectedRows > 0) {
-    res.redirect("/students");
+    res.sendStatus(200);
   } else {
     res.sendStatus(404);
   }
