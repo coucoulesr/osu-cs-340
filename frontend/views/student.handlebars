@@ -1,12 +1,23 @@
-<p>
-  {{student.id}}
-  -
-  {{student.first_name}}
-  {{student.last_name}}
-</p><br />
-<p>Courses Taken:</p>
-<ul>
-  {{#each courses}}
-    <li>{{this.subject}}{{this.course_number}} - {{this.title}}</li>
-  {{/each}}
-</ul>
+{{!-- Wrapper --}}
+<div class="flex flex-col items-center justify-center">
+  {{!-- Main Div--}}
+  <div class = "flex flex-col justify-center w-4/6">
+    <h1 class="text-5xl my-2">{{student.first_name}} {{student.last_name}}</h1>
+    {{!-- Student Info Div--}}
+    <div class="p-4 bg-blue-50 flex flex-col">
+    {{!-- Box --}}
+    <div class="p-4 bg-blue-50"> 
+      <h2 class="ml-2 text-lg">Enrolled courses:</h2>
+      <ul>
+      {{#each courses}}
+        <li class = "bg-white h-14 border border-blue-300 shadow flex flex-row  justify-between items-center p-4 m-2 hover:bg-gray-50">
+          <a class = "hover:underline" href="/courses/{{this.id}}">
+            {{this.subject}}{{this.course_number}} - {{this.title}}
+          </a>
+          </div>
+        </li>
+      {{/each}}
+      </ul>
+    </div>
+  </div>
+</div>
