@@ -149,7 +149,7 @@ class db {
   async getAssignmentInfo(assignmentId) {
     try {
       const comments = await this.pool.query(
-        "SELECT s.first_name, s.last_name, c.*, COUNT(v.value) AS votes, SUM(v.value) AS score FROM Comments c " +
+        "SELECT s.id as student_id, s.first_name, s.last_name, c.*, COUNT(v.value) AS votes, SUM(v.value) AS score FROM Comments c " +
           "LEFT JOIN Votes v ON v.comment_id=c.id " +
           "INNER JOIN Assignments a ON a.id=c.assignment_id " +
           "INNER JOIN Students s ON s.id=c.author_id " +

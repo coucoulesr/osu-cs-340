@@ -96,8 +96,8 @@ app.post("/create-assignment", async (req, res) => {
   res.redirect("/courses/" + req.body.class_id);
 });
 
-// Add new review
-app.post("/create-review", async (req, res) => {
+// Add new comment
+app.post("/create-comment", async (req, res) => {
   await db.insert("Comments", {
     ...req.body,
     created: new Date(Date.now())
@@ -159,9 +159,22 @@ app.delete("/delete-student/:id", async (req, res) => {
   }
 });
 
-// Delete course by id
+// Delete assignment by id
 app.delete("/delete-assignment/:id", async (req, res) => {
   const result = await db.delete("Assignments", {
+    filters: ["id=?"],
+    filterParams: [req.params.id],
+  });
+  if (result.affectedRows > 0) {
+    res.sendStatus(200);
+  } else {
+    res.sendStatus(404);
+  }
+});
+
+// Delete comment by id
+app.delete("/delete-comment/:id", async (req, res) => {
+  const result = await db.delete("Comments", {
     filters: ["id=?"],
     filterParams: [req.params.id],
   });
