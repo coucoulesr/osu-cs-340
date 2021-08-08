@@ -33,7 +33,7 @@ const db = new dbUtil({
 // Main page (get all courses)
 app.get("/", async (req, res) => {
   const courses = await db.select("Classes");
-  res.render("classes.handlebars", { courses });
+  res.render("courses.handlebars", { courses });
 });
 
 // Get course info
@@ -44,7 +44,7 @@ app.get("/courses/:id", async (req, res) => {
   });
   const students = await db.getStudentsInCourse(course.id);
   const assignments = await db.getAssignmentsInCourse(course.id);
-  res.render("assignments.handlebars", { course, students, assignments });
+  res.render("course-info.handlebars", { course, students, assignments });
 });
 
 // Get all students
@@ -72,6 +72,11 @@ app.get("/assignments/:id", async (req, res) => {
     comments,
     ratings,
   });
+});
+
+// Get JSON encoded list of students
+app.get("/students-list", async (req, res) => {
+  res.send(await db.select("Students"));
 });
 
 // Add new course
@@ -106,10 +111,8 @@ app.post("/create-review", async (req, res) => {
 
 // Add student to course
 app.post("/add-student-to-course", async (req, res) => {
-  await db.insert("Students_Classes", {
-    student_id: req.body.student_id,
-    class_id: req.body.class_id,
-  });
+  const { student_id, class_id } = req.body;
+  await db.insert("Students_Classes", { student_id, class_id });
   res.redirect("/courses/" + req.body.class_id);
 });
 
@@ -149,6 +152,21 @@ app.delete("/delete-student/:id", async (req, res) => {
   const result = await db.delete("Students", {
     filters: ["id=?"],
     filterParams: [req.params.id],
+  });
+  if (result.affectedRows > 0) {
+    res.sendStatus(200);
+  } else {
+    res.sendStatus(404);
+  }
+});
+
+// Disassociate student from course
+app.delete("/remove-student-from-course", async (req, res) => {
+  const { student_id, class_id } = req.body;
+  console.log(`remove student: ${student_id} - ${class_id}`);
+  const result = await db.delete("Students_Classes", {
+    filters: ["student_id=?", "class_id=?"],
+    filterParams: [student_id, class_id],
   });
   if (result.affectedRows > 0) {
     res.sendStatus(200);

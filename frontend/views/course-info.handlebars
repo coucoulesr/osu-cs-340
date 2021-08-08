@@ -116,23 +116,13 @@
                         </div>
 
                         <form action="/add-student-to-course" method="POST" class = "flex flex-col items-center justify-center">
+                            <input type="text" id="add-student-course-id" name="class_id" value="{{course.id}}" class="hidden"/>
                             <div class = "m-4">
-                                <label for="title" class="w-32 mr-2 text-right">
-                                First Name:
+                                <label for="add-student-select" class="w-32 mr-2 text-right">
+                                    Student:
                                 </label>
-                                <input type="text" id="title" name="title" placeholder="John" class = "shadow focus:outline-none focus:placeholder-transparent"/>
-                            </div>
-                            <div class = "m-4">
-                                <label for="title" class="w-32 mr-2 text-right">
-                                Last Name:
-                                </label>
-                                <input type="text" id="title" name="title" placeholder="Doe" class = "shadow focus:outline-none focus:placeholder-transparent"/>
-                            </div>
-                            <div class = "m-4">
-                                <label for="title" class="w-32 mr-2 text-right">
-                                Student ID:
-                                </label>
-                                <input type="text" id="title" name="title" placeholder="123456789" class = "shadow focus:outline-none focus:placeholder-transparent"/>
+                                <select id="add-student-select" name="student_id">
+                                </select>
                             </div>
                             <input class="self-end p-2 mx-4 text-white bg-indigo-400 shadow rounded-xl" type="submit" value="Add Student" />
                         </form>
@@ -146,7 +136,7 @@
                       <li class = "bg-white h-14 border border-blue-300 shadow flex flex-row  justify-between items-center p-4 m-2 hover:bg-gray-50">
                           <a class = "hover:underline" href="/students/{{this.id}}">{{this.first_name}} {{this.last_name}}</a>
                           <div class = "text-blue-500 hover:text-blue-800">
-                                <button class="js-delete-assignment-button" data-course-id="{{this.id}}">
+                                <button class="js-remove-student-button" data-student-id="{{this.id}}" data-course-id="{{../course.id}}">
                                 <svg 
                                     viewBox="-40 0 427 427.00131" 
                                     xmlns="http://www.w3.org/2000/svg"
@@ -173,4 +163,5 @@
 
 <script src="/javascripts/modal.js"></script>
 <script src="/javascripts/tabs.js"></script>
-
+<script src="/javascripts/remove-student-from-course.js"></script>
+<script src="/javascripts/populate-student-select.js"></script>

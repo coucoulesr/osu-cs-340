@@ -92,7 +92,7 @@ class db {
       const output = await this.pool.query(query, filterParams);
       return output;
     } catch (e) {
-      console.error("db.insert error: ", e);
+      console.error("db.delete error: ", e);
       throw e;
     }
   }
