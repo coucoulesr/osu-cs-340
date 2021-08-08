@@ -75,6 +75,12 @@ app.get("/assignments/:id", async (req, res) => {
 });
 
 // Add new course
+app.post("/create-student", async (req, res) => {
+  await db.insert("Students", req.body);
+  res.redirect("/students");
+});
+
+// Add new course
 app.post("/create-course", async (req, res) => {
   await db.insert("Classes", req.body);
   res.redirect("/");
@@ -107,10 +113,16 @@ app.post("/add-student-to-course", async (req, res) => {
   res.redirect("/courses/" + req.body.class_id);
 });
 
+// Edit student
+app.post("/edit-student/:id", async (req, res) => {
+  await db.editStudent(req.params.id, req.body);
+  res.redirect("/students/" + req.params.id);
+});
+
 // Edit assignment
-app.put("/edit-assignment/:id", async (req, res) => {
+app.post("/edit-assignment/:id", async (req, res) => {
   await db.editAssignment(req.params.id, req.body.title);
-  res.redirect("/assignments/" + req.params.assignment_id);
+  res.redirect("/assignments/" + req.params.id);
 });
 
 // Delete course by id
@@ -121,6 +133,19 @@ app.delete("/delete-course/:id", async (req, res) => {
   });
   if (result.affectedRows > 0) {
     res.sendStatus(200);
+  } else {
+    res.sendStatus(404);
+  }
+});
+
+// Delete student by id
+app.delete("/delete-student/:id", async (req, res) => {
+  const result = await db.delete("Students", {
+    filters: ["id=?"],
+    filterParams: [req.params.id],
+  });
+  if (result.affectedRows > 0) {
+    res.redirect("/students");
   } else {
     res.sendStatus(404);
   }

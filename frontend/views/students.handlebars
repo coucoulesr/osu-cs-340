@@ -1,6 +1,5 @@
 <link rel = "stylesheet" href = "stylesheets/modal.css">
 
-
 {{!-- Wrapper --}}
 <div class="flex flex-col items-center justify-center">
   {{!-- Main Div--}}
@@ -14,7 +13,7 @@
     {{!-- Box --}}
     <div class="p-4 bg-blue-50">
 
-      {{!-- Add-course button --}}
+      {{!-- Add Student button --}}
       <button class = "modal_open w-56 mx-4 text-white bg-indigo-400 shadow rounded-2xl h-14">
         Add Student
       </button>
@@ -24,31 +23,31 @@
       <div class = "modal">
         <div class="bg-blue-100 w-96 justify-self-center h-72">
           <div class = "flex justify-between w-full px-4 text-lg text-white bg-indigo-400">
-            <h1 class = >Add a New Course</h2>
+            <h1 class = >Add a new student</h2>
             <button class = "modal_close text-white">x</button>
           </div>
 
-          <form id="add-course" action="/create-course" method="POST">
+          <form id="add-student" action="/create-student" method="POST">
             <div class="inline-flex flex-col p-4 space-y-4 bg-blue-100">
               <div>
-                <label for="fname" class="inline-block w-32 mr-2 text-right">
+                <label for="pin" class="inline-block w-32 mr-2 text-right">
+                  PIN:
+                </label>
+                <input type="text" id="pin" name="pin" placeholder="1001" class="shadow focus:outline-none focus:placeholder-transparent"/>
+              </div>
+              <div>
+                <label for="first-name" class="inline-block w-32 mr-2 text-right">
                   First Name:
                 </label>
-                <input type="text" id="fname" name="fname" placeholder="Mike" class="shadow focus:outline-none focus:placeholder-transparent"/>
+                <input type="text" id="first-name" name="first_name" placeholder="Lola" class="shadow focus:outline-none focus:placeholder-transparent"/>
               </div>
               <div>
-                <label for="lname" class="inline-block w-32 mr-2 text-right">
+                <label for="last-name" class="inline-block w-32 mr-2 text-right">
                   Last Name:
                 </label>
-                <input type="text" id="lname" name="lname" placeholder="Wazowski" class="shadow focus:outline-none focus:placeholder-transparent"/>
+                <input type="text" id="last-name" name="last_name" placeholder="Bunny" class="shadow focus:outline-none focus:placeholder-transparent"/>
               </div>
-              <div>
-                <label for="sID" class="inline-block w-32 mr-2 text-right">
-                  Student ID:
-                </label>
-                <input type="text" id="sID" name="sID" placeholder="123456789" class="shadow focus:outline-none focus:placeholder-transparent"/>
-              </div>
-              <input class="self-end p-2 text-white bg-indigo-400 shadow rounded-xl" type="submit" value="Add Course" />
+              <input class="self-end p-2 text-white bg-indigo-400 shadow rounded-xl" type="submit" value="Add Student" />
             </div>
           </form>
         </div>
@@ -66,7 +65,7 @@
 
           <div class = "flex flex-row justify-between w-20 text-blue-500 hover:text-blue-800">
             <button class = "modal_open">Edit</button>
-            <button class="js-delete-course-button" data-course-id="{{this.id}}">
+            <button class="js-delete-student-button" data-student-id="{{this.id}}">
               <svg 
                 viewBox="-40 0 427 427.00131" 
                 xmlns="http://www.w3.org/2000/svg"
@@ -80,22 +79,29 @@
             </button>
           </div>
 
-          {{!-- Edit Course Modal --}}
+          {{!-- Edit Student Modal --}}
           <div class = "modal">
             <div class="bg-blue-100 w-96 justify-self-center h-72">
               <div class = "flex justify-between w-full px-4 text-lg text-white bg-indigo-400">
-                <h1 class = >Edit Course</h2>
+                <h1 class = >Edit Student</h2>
                 <button class = "modal_close text-white">x</button>
               </div>
 
-              <form id="edit-course" action="/edit-assignment/{{this.id}}" method="PUT">
+              <form id="edit-student" action="/edit-student/{{this.id}}" method="POST">
                 <div class="inline-flex flex-col p-4 space-y-4 bg-blue-100">
                   <div>
-                    <label for="title" class="inline-block w-32 mr-2 text-right">
-                      Title:
+                    <label for="edit-first-name" class="inline-block w-32 mr-2 text-right">
+                      First Name:
                     </label>
-                    <input type="text" id="title" name="title" placeholder="{{this.title}}" class="shadow focus:outline-none focus:placeholder-transparent"/>
-                  <input class="self-end p-2 text-white bg-indigo-400 shadow rounded-xl" type="submit" value="Update Course" />
+                    <input type="text" id="edit-first-name" name="first_name" value="{{this.first_name}}" class="shadow focus:outline-none focus:placeholder-transparent"/>
+                  </div>
+                  <div>
+                    <label for="edit-last-name" class="inline-block w-32 mr-2 text-right">
+                      Last Name:
+                    </label>
+                    <input type="text" id="edit-last-name" name="last_name" value="{{this.last_name}}" class="shadow focus:outline-none focus:placeholder-transparent"/>
+                  </div>
+                  <input class="self-end p-2 text-white bg-indigo-400 shadow rounded-xl" type="submit" value="Update Student" />
                 </div>
               </form>
             </div>
@@ -110,3 +116,4 @@
 </div>
 
 <script src="javascripts/modal.js"></script>
+<script src="javascripts/delete-student.js"></script>
