@@ -207,6 +207,19 @@ class db {
     }
   }
 
+  async editCourse(courseId, title) {
+    try {
+      const output = this.pool.query("UPDATE Classes SET title=? WHERE id=?;", [
+        title,
+        courseId,
+      ]);
+      return output;
+    } catch (e) {
+      console.error("db.editAssignment error: ", e);
+      throw e;
+    }
+  }
+
   async editStudent(studentId, { first_name, last_name }) {
     try {
       const output = this.pool.query(

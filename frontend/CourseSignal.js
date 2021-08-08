@@ -113,16 +113,22 @@ app.post("/add-student-to-course", async (req, res) => {
   res.redirect("/courses/" + req.body.class_id);
 });
 
+// Edit course
+app.post("/edit-course/:id", async (req, res) => {
+  await db.editCourse(req.params.id, req.body.title);
+  res.redirect("/");
+});
+
 // Edit student
 app.post("/edit-student/:id", async (req, res) => {
   await db.editStudent(req.params.id, req.body);
-  res.redirect("/students/" + req.params.id);
+  res.redirect("/students");
 });
 
 // Edit assignment
 app.post("/edit-assignment/:id", async (req, res) => {
   await db.editAssignment(req.params.id, req.body.title);
-  res.redirect("/assignments/" + req.params.id);
+  res.redirect("/assignments");
 });
 
 // Delete course by id
