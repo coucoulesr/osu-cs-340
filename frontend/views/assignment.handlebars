@@ -1,5 +1,5 @@
 <div>
-  <div class="mx-4 mt-4 bg-red-50">
+  <div class="mx-4 mt-4 flex flex-row justify-between">
     <form action="/courses/{{assignment.id}}">
       <button type="submit" class = "p-2 bg-blue-50 rounded shadow text-blue-900 border border-blue-300 flex flex-row items-center hover:bg-blue-100">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
@@ -9,6 +9,14 @@
       </button>
     </form>
 
+    {{!-- For changing views. Not Implemented --}}
+    {{!-- <form class = "p-2 bg-blue-50 rounded shadow text-blue-900 border border-blue-300 flex flex-row items-center">
+      <div>
+        <label for="add-student-select" class="mr-2 text-right">Change View to:</label>
+        <select id="add-student-select" name="student_id"></select>
+        <button type="submit">Change View</button>
+      </div>
+    </form> --}}
   </div>
 
 
@@ -259,3 +267,5 @@
 </div>
 <script src="/javascripts/delete-comment.js"></script>
 <script src="/javascripts/update-ratings.js"></script>
+{{!-- For if changing views --}}
+{{!-- <script src="/javascripts/populate-student-select.js"></script> --}}
