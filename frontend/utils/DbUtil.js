@@ -320,7 +320,7 @@ class db {
   async updateRating(score, author_id, assignment_id, category) {
     try {
       await this.pool.query(
-        "UPDATE ratings SET score = ? WHERE author_id = ? AND assignment_id = ? AND category = ?",
+        "UPDATE Ratings SET score = ? WHERE author_id = ? AND assignment_id = ? AND category = ?",
         [score, author_id, assignment_id, category]
       );
     } catch (error) {
