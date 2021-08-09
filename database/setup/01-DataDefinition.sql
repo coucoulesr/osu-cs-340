@@ -99,18 +99,3 @@ CREATE TABLE Students_Classes
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
-
--- Students_Assignments relationship
-DROP TABLE IF EXISTS Students_Assignments;
-CREATE TABLE Students_Assignments
-(
-    student_id INT(11),
-    assignment_id INT(11),
-    complete BOOLEAN,
-    FOREIGN KEY (student_id) REFERENCES Students (id)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE,
-    FOREIGN KEY (assignment_id) REFERENCES Assignments (id)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE
-);
