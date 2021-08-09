@@ -1,247 +1,261 @@
 <div>
-      <!-- Blue Box -->
-      <div
-        class="m-4 text-blue-900 border border-blue-300 rounded shadow bg-blue-50"
-      >
-        <!-- Ratings Section-->
-        <h1 class="mx-4 mt-2 text-2xl font-bold">Rate this Assignment</h1>
-        <div class="m-4 border-2 border-blue-300">
-          <!-- Difficulty Rating -->
-          <form id="Difficulty Rating" class="flex flex-row m-2 justify-evenly">
-            <div id="Select Difficulty" class="w-1/3">
-              <h2 class="flex justify-center mb-2 text-xl font-bold uppercase">
-                Difficulty
-              </h2>
-              <div class="flex flex-row justify-evenly">
-                <div class="flex flex-col items-center justify-center">
-                  <button
-                    id = "rate_easy"
-                    class="flex w-12 h-12 bg-blue-300 rounded-full shadow-md"
-                  ></button>
-                  <span>Easy</span>
-                </div>
-                <div class="flex flex-col items-center justify-center">
-                  <button
-                    id = "rate_medium"
-                    class="flex w-12 h-12 bg-blue-500 rounded-full shadow-md"
-                  ></button>
-                  <span>Medium</span>
-                </div>
-                <div class="flex flex-col items-center justify-center">
-                  <button
-                    id = "rate_hard"
-                    class="flex w-12 h-12 bg-blue-900 rounded-full shadow-md"
-                  ></button>
-                  <span>Hard</span>
-                </div>
-              </div>
+  <div class="mx-4 mt-4 bg-red-50">
+    <form action="/courses/{{assignment.id}}">
+      <button type="submit" class = "p-2 bg-blue-50 rounded shadow text-blue-900 border border-blue-300 flex flex-row items-center hover:bg-blue-100">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+        </svg>
+        <span>&nbspBack to Course</span>
+      </button>
+    </form>
+
+  </div>
+
+
+  </a>
+  <!-- Blue Box -->
+  <div
+    class="m-4 text-blue-900 border border-blue-300 rounded shadow bg-blue-50"
+  >
+    <!-- Ratings Section-->
+    <h1 class="mx-4 mt-2 text-2xl font-bold">Rate this Assignment</h1>
+    <div class="m-4 border-2 border-blue-300">
+      <!-- Difficulty Rating -->
+      <form id="Difficulty Rating" class="flex flex-row m-2 justify-evenly">
+        <div id="Select Difficulty" class="w-1/3">
+          <h2 class="flex justify-center mb-2 text-xl font-bold uppercase">
+            Difficulty
+          </h2>
+          <div class="flex flex-row justify-evenly">
+            <div class="flex flex-col items-center justify-center">
+              <button
+                id = "rate_easy"
+                class="flex w-12 h-12 bg-blue-300 rounded-full shadow-md"
+              ></button>
+              <span>Easy</span>
             </div>
-
-            <div id="Display Difficulty Ratings" class="w-2/3 mx-2">
-              <h3 class="flex justify-center mb-4 text-xl uppercase">
-                Classmate's Ratings
-              </h3>
-              <div
-                id="Difficulty Bar"
-                class="flex flex-row w-full h-6 shadow-sm"
-              >
-                <div class="h-full bg-blue-300" style="width: {{percents.difficulty.downPercent}}%"></div>
-                <div class="h-full bg-blue-500" style="width: {{percents.difficulty.midPercent}}%"></div>
-                <div class="h-full bg-blue-900" style="width: {{percents.difficulty.upPercent}}%"></div>
-              </div>
-              <div class="flex flex-row w-full">
-                <p class="flex justify-center" style="width: {{percents.difficulty.downPercent}}%">{{ratings.difficulty.downvotes}}</p>
-                <p class="flex justify-center" style="width: {{percents.difficulty.midPercent}}%">{{ratings.difficulty.midvotes}}</p>
-                <p class="flex justify-center" style="width: {{percents.difficulty.upPercent}}%">{{ratings.difficulty.upvotes}}</p>
-              </div>
+            <div class="flex flex-col items-center justify-center">
+              <button
+                id = "rate_medium"
+                class="flex w-12 h-12 bg-blue-500 rounded-full shadow-md"
+              ></button>
+              <span>Medium</span>
             </div>
-          </form>
-
-          <hr class="border-blue-300" />
-
-          <!-- Usefulness Rating -->
-          <form id="Usefulness Rating" class="flex flex-row m-2 justify-evenly">
-            <div id="Select Usefulness" class="w-1/3">
-              <h2 class="flex justify-center mb-2 text-xl font-bold uppercase">
-                Usefulness
-              </h2>
-              <div class="flex flex-row justify-evenly">
-                <div class="flex flex-col items-center justify-center">
-                  <button
-                    id = "rate_waste"
-                    class="flex w-12 h-12 bg-purple-300 rounded-full shadow-md"
-                  ></button>
-                  <span>Waste</span>
-                </div>
-                <div class="flex flex-col items-center justify-center">
-                  <button
-                    id = "rate_practice"
-                    class="flex w-12 h-12 bg-purple-500 rounded-full shadow-md"
-                  ></button>
-                  <span>Practice</span>
-                </div>
-                <div class="flex flex-col items-center justify-center">
-                  <button
-                  id = "rate_helpful"
-                    class="flex w-12 h-12 bg-purple-900 rounded-full shadow-md"
-                  ></button>
-                  <span>Helpful</span>
-                </div>
-              </div>
+            <div class="flex flex-col items-center justify-center">
+              <button
+                id = "rate_hard"
+                class="flex w-12 h-12 bg-blue-900 rounded-full shadow-md"
+              ></button>
+              <span>Hard</span>
             </div>
-
-            <div id="Display Usefulness Ratings" class="w-2/3 mx-2">
-              <h3 class="flex justify-center mb-4 text-xl uppercase">
-                Classmate's Ratings
-              </h3>
-              <div
-                id="Usefulness Bar"
-                class="flex flex-row w-full h-6 shadow-sm"
-              >
-                <div class="h-full bg-purple-300" style="width: {{percents.usefulness.downPercent}}%"></div>
-                <div class="h-full bg-purple-500" style="width: {{percents.usefulness.midPercent}}%"></div>
-                <div class="h-full bg-purple-900" style="width: {{percents.usefulness.upPercent}}%"></div>
-              </div>
-              <div class="flex flex-row w-full">
-                <p class="flex justify-center" style="width: {{percents.usefulness.downPercent}}%">{{ratings.usefulness.downvotes}}</p>
-                <p class="flex justify-center" style="width: {{percents.usefulness.midPercent}}%">{{ratings.usefulness.midvotes}}</p>
-                <p class="flex justify-center" style="width: {{percents.usefulness.upPercent}}%">{{ratings.usefulness.upvotes}}</p>
-              </div>
-            </div>
-          </form>
-
-          <hr class="border-blue-300" />
-
-          <!-- Satisfaction Rating -->
-          <form
-            id="Satisfaction Rating"
-            class="flex flex-row m-2 justify-evenly"
-          >
-            <div id="Select Satisfaction" class="w-1/3">
-              <h2 class="flex justify-center mb-2 text-xl font-bold uppercase">
-                Satisfaction
-              </h2>
-              <div class="flex flex-row justify-evenly">
-                <div class="flex flex-col items-center justify-center">
-                  <button
-                    id = "rate_hated"
-                    class="flex w-12 h-12 bg-pink-300 rounded-full shadow-md"
-                  ></button>
-                  <span>Hated</span>
-                </div>
-                <div class="flex flex-col items-center justify-center">
-                  <button
-                    id = "rate_eh"
-                    class="flex w-12 h-12 bg-pink-500 rounded-full shadow-md"
-                  ></button>
-                  <span>Eh...</span>
-                </div>
-                <div class="flex flex-col items-center justify-center">
-                  <button
-                    id = "rate_loved"
-                    class="flex w-12 h-12 bg-pink-900 rounded-full shadow-md"
-                  ></button>
-                  <span>Loved</span>
-                </div>
-              </div>
-            </div>
-
-            <div id="Display Satisfaction Ratings" class="w-2/3 mx-2">
-              <h3 class="flex justify-center mb-4 text-xl uppercase">
-                Classmate's Ratings
-              </h3>
-              <div
-                id="Satisfaction Bar"
-                class="flex flex-row w-full h-6 shadow-sm"
-              >
-                <div class="h-full bg-pink-300" style="width: {{percents.satisfaction.downPercent}}%"></div>
-                <div class="h-full bg-pink-500" style="width: {{percents.satisfaction.midPercent}}%"></div>
-                <div class="h-full bg-pink-900" style="width: {{percents.satisfaction.upPercent}}%"></div>
-              </div>
-              <div class="flex flex-row w-full">
-                <p class="flex justify-center" style="width: {{percents.satisfaction.downPercent}}%">{{ratings.satisfaction.downvotes}}</p>
-                <p class="flex justify-center" style="width: {{percents.satisfaction.midPercent}}%">{{ratings.satisfaction.midvotes}}</p>
-                <p class="flex justify-center" style="width: {{percents.satisfaction.upPercent}}%">{{ratings.satisfaction.upvotes}}</p>
-              </div>
-            </div>
-          </form>
-        </div>
-
-        <hr class="border-blue-300" />
-
-        <!-- Write a Comment Section -->
-        <div class="pt-2 mx-4">
-          <h1 class="text-2xl font-bold">Write a Comment</h1>
-          <div class="mx-4 my-2">
-            <form id="new-comment" action="/create-comment" method="POST">
-              <input type="number" name="assignment_id" class="hidden" value={{assignment.id}} />
-              <input type="number" name="author_id" class="hidden" value="1000" />
-              <textarea
-                id="comment-text"
-                class="w-full h-40 px-1 rounded"
-                name="body"
-              ></textarea>
-              <span class="flex justify-end w-full">
-                <input
-                  class="px-3 py-2 my-1"
-                  type="submit"
-                  value="Post Comment"
-                />
-              </span>
-            </form>
           </div>
         </div>
 
-        <hr class="border-blue-300" />
-        <!-- Read Comments Section -->
-        <div class="pt-2 mx-4">
-          <h1 class="text-2xl font-bold">Read Other Comments</h1>
-          <!-- All Comments container -->
+        <div id="Display Difficulty Ratings" class="w-2/3 mx-2">
+          <h3 class="flex justify-center mb-4 text-xl uppercase">
+            Classmate's Ratings
+          </h3>
           <div
-            class="mx-4 my-2 bg-indigo-100 divide-y divide-indigo-300 rounded"
+            id="Difficulty Bar"
+            class="flex flex-row w-full h-6 shadow-sm"
           >
-            {{#each comments}}
-            <!-- Single Comment container -->
-            <div class="flex p-2 my-2">
-              <!-- Commenter Info -->
-              <div class="mt-1 ml-2 mr-4 w-14 min-w-14 flex-0">
-                <a href="/students/{{this.student_id}}">
-                  <img
-                    src="https://source.unsplash.com/random/400x400?id={{this.id}}"
-                    class="w-24 rounded-full"
-                  />
-                  <p class="text-sm font-bold text-center">{{this.first_name}} {{this.last_name}}</p>
-                  
-                </a>
-              </div>
-              <!-- Comment Body -->
-              <div class="flex flex-1 flex-col ml-2">
-                <span class="flex-1 flex items-center">
-                  <p>
-                    {{this.body}}
-                  </p>
-                </span>
-                <!-- Button container -->
-                <div class="self-end">
-                  <button class="js-delete-comment-button" data-comment-id="{{this.id}}">
-                    <svg 
-                      viewBox="-40 0 427 427.00131" 
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="w-4 text-red-300 fill-current hover:text-red-500"
-                    >
-                        <path d="m232.398438 154.703125c-5.523438 0-10 4.476563-10 10v189c0 5.519531 4.476562 10 10 10 5.523437 0 10-4.480469 10-10v-189c0-5.523437-4.476563-10-10-10zm0 0"/>
-                        <path d="m114.398438 154.703125c-5.523438 0-10 4.476563-10 10v189c0 5.519531 4.476562 10 10 10 5.523437 0 10-4.480469 10-10v-189c0-5.523437-4.476563-10-10-10zm0 0"/>
-                        <path d="m28.398438 127.121094v246.378906c0 14.5625 5.339843 28.238281 14.667968 38.050781 9.285156 9.839844 22.207032 15.425781 35.730469 15.449219h189.203125c13.527344-.023438 26.449219-5.609375 35.730469-15.449219 9.328125-9.8125 14.667969-23.488281 14.667969-38.050781v-246.378906c18.542968-4.921875 30.558593-22.835938 28.078124-41.863282-2.484374-19.023437-18.691406-33.253906-37.878906-33.257812h-51.199218v-12.5c.058593-10.511719-4.097657-20.605469-11.539063-28.03125-7.441406-7.421875-17.550781-11.5546875-28.0625-11.46875h-88.796875c-10.511719-.0859375-20.621094 4.046875-28.0625 11.46875-7.441406 7.425781-11.597656 17.519531-11.539062 28.03125v12.5h-51.199219c-19.1875.003906-35.394531 14.234375-37.878907 33.257812-2.480468 19.027344 9.535157 36.941407 28.078126 41.863282zm239.601562 279.878906h-189.203125c-17.097656 0-30.398437-14.6875-30.398437-33.5v-245.5h250v245.5c0 18.8125-13.300782 33.5-30.398438 33.5zm-158.601562-367.5c-.066407-5.207031 1.980468-10.21875 5.675781-13.894531 3.691406-3.675781 8.714843-5.695313 13.925781-5.605469h88.796875c5.210937-.089844 10.234375 1.929688 13.925781 5.605469 3.695313 3.671875 5.742188 8.6875 5.675782 13.894531v12.5h-128zm-71.199219 32.5h270.398437c9.941406 0 18 8.058594 18 18s-8.058594 18-18 18h-270.398437c-9.941407 0-18-8.058594-18-18s8.058593-18 18-18zm0 0"/>
-                        <path d="m173.398438 154.703125c-5.523438 0-10 4.476563-10 10v189c0 5.519531 4.476562 10 10 10 5.523437 0 10-4.480469 10-10v-189c0-5.523437-4.476563-10-10-10zm0 0"/>
-                    </svg>
-                  </button>
-                </div>
-              </div>
-            </div>
-            {{/each}}
+            <div class="h-full bg-blue-300" style="width: {{percents.difficulty.downPercent}}%"></div>
+            <div class="h-full bg-blue-500" style="width: {{percents.difficulty.midPercent}}%"></div>
+            <div class="h-full bg-blue-900" style="width: {{percents.difficulty.upPercent}}%"></div>
+          </div>
+          <div class="flex flex-row w-full">
+            <p class="flex justify-center" style="width: {{percents.difficulty.downPercent}}%">{{ratings.difficulty.downvotes}}</p>
+            <p class="flex justify-center" style="width: {{percents.difficulty.midPercent}}%">{{ratings.difficulty.midvotes}}</p>
+            <p class="flex justify-center" style="width: {{percents.difficulty.upPercent}}%">{{ratings.difficulty.upvotes}}</p>
           </div>
         </div>
-      </div>
+      </form>
 
+      <hr class="border-blue-300" />
+
+      <!-- Usefulness Rating -->
+      <form id="Usefulness Rating" class="flex flex-row m-2 justify-evenly">
+        <div id="Select Usefulness" class="w-1/3">
+          <h2 class="flex justify-center mb-2 text-xl font-bold uppercase">
+            Usefulness
+          </h2>
+          <div class="flex flex-row justify-evenly">
+            <div class="flex flex-col items-center justify-center">
+              <button
+                id = "rate_waste"
+                class="flex w-12 h-12 bg-purple-300 rounded-full shadow-md"
+              ></button>
+              <span>Waste</span>
+            </div>
+            <div class="flex flex-col items-center justify-center">
+              <button
+                id = "rate_practice"
+                class="flex w-12 h-12 bg-purple-500 rounded-full shadow-md"
+              ></button>
+              <span>Practice</span>
+            </div>
+            <div class="flex flex-col items-center justify-center">
+              <button
+              id = "rate_helpful"
+                class="flex w-12 h-12 bg-purple-900 rounded-full shadow-md"
+              ></button>
+              <span>Helpful</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="Display Usefulness Ratings" class="w-2/3 mx-2">
+          <h3 class="flex justify-center mb-4 text-xl uppercase">
+            Classmate's Ratings
+          </h3>
+          <div
+            id="Usefulness Bar"
+            class="flex flex-row w-full h-6 shadow-sm"
+          >
+            <div class="h-full bg-purple-300" style="width: {{percents.usefulness.downPercent}}%"></div>
+            <div class="h-full bg-purple-500" style="width: {{percents.usefulness.midPercent}}%"></div>
+            <div class="h-full bg-purple-900" style="width: {{percents.usefulness.upPercent}}%"></div>
+          </div>
+          <div class="flex flex-row w-full">
+            <p class="flex justify-center" style="width: {{percents.usefulness.downPercent}}%">{{ratings.usefulness.downvotes}}</p>
+            <p class="flex justify-center" style="width: {{percents.usefulness.midPercent}}%">{{ratings.usefulness.midvotes}}</p>
+            <p class="flex justify-center" style="width: {{percents.usefulness.upPercent}}%">{{ratings.usefulness.upvotes}}</p>
+          </div>
+        </div>
+      </form>
+
+      <hr class="border-blue-300" />
+
+      <!-- Satisfaction Rating -->
+      <form
+        id="Satisfaction Rating"
+        class="flex flex-row m-2 justify-evenly"
+      >
+        <div id="Select Satisfaction" class="w-1/3">
+          <h2 class="flex justify-center mb-2 text-xl font-bold uppercase">
+            Satisfaction
+          </h2>
+          <div class="flex flex-row justify-evenly">
+            <div class="flex flex-col items-center justify-center">
+              <button
+                id = "rate_hated"
+                class="flex w-12 h-12 bg-pink-300 rounded-full shadow-md"
+              ></button>
+              <span>Hated</span>
+            </div>
+            <div class="flex flex-col items-center justify-center">
+              <button
+                id = "rate_eh"
+                class="flex w-12 h-12 bg-pink-500 rounded-full shadow-md"
+              ></button>
+              <span>Eh...</span>
+            </div>
+            <div class="flex flex-col items-center justify-center">
+              <button
+                id = "rate_loved"
+                class="flex w-12 h-12 bg-pink-900 rounded-full shadow-md"
+              ></button>
+              <span>Loved</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="Display Satisfaction Ratings" class="w-2/3 mx-2">
+          <h3 class="flex justify-center mb-4 text-xl uppercase">
+            Classmate's Ratings
+          </h3>
+          <div
+            id="Satisfaction Bar"
+            class="flex flex-row w-full h-6 shadow-sm"
+          >
+            <div class="h-full bg-pink-300" style="width: {{percents.satisfaction.downPercent}}%"></div>
+            <div class="h-full bg-pink-500" style="width: {{percents.satisfaction.midPercent}}%"></div>
+            <div class="h-full bg-pink-900" style="width: {{percents.satisfaction.upPercent}}%"></div>
+          </div>
+          <div class="flex flex-row w-full">
+            <p class="flex justify-center" style="width: {{percents.satisfaction.downPercent}}%">{{ratings.satisfaction.downvotes}}</p>
+            <p class="flex justify-center" style="width: {{percents.satisfaction.midPercent}}%">{{ratings.satisfaction.midvotes}}</p>
+            <p class="flex justify-center" style="width: {{percents.satisfaction.upPercent}}%">{{ratings.satisfaction.upvotes}}</p>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <hr class="border-blue-300" />
+
+    <!-- Write a Comment Section -->
+    <div class="pt-2 mx-4">
+      <h1 class="text-2xl font-bold">Write a Comment</h1>
+      <div class="mx-4 my-2">
+        <form id="new-comment" action="/create-comment" method="POST">
+          <input type="number" name="assignment_id" class="hidden" value={{assignment.id}} />
+          <input type="number" name="author_id" class="hidden" value="1000" />
+          <textarea
+            id="comment-text"
+            class="w-full h-40 px-1 rounded"
+            name="body"
+          ></textarea>
+          <span class="flex justify-end w-full">
+            <input
+              class="px-3 py-2 my-1"
+              type="submit"
+              value="Post Comment"
+            />
+          </span>
+        </form>
+      </div>
+    </div>
+
+    <hr class="border-blue-300" />
+    <!-- Read Comments Section -->
+    <div class="pt-2 mx-4">
+      <h1 class="text-2xl font-bold">Read Other Comments</h1>
+      <!-- All Comments container -->
+      <div
+        class="mx-4 my-2 bg-indigo-100 divide-y divide-indigo-300 rounded"
+      >
+        {{#each comments}}
+        <!-- Single Comment container -->
+        <div class="flex p-2 my-2">
+          <!-- Commenter Info -->
+          <div class="mt-1 ml-2 mr-4 w-14 min-w-14 flex-0">
+            <a href="/students/{{this.student_id}}">
+              <img
+                src="https://source.unsplash.com/random/400x400?id={{this.id}}"
+                class="w-24 rounded-full"
+              />
+              <p class="text-sm font-bold text-center">{{this.first_name}} {{this.last_name}}</p>
+              
+            </a>
+          </div>
+          <!-- Comment Body -->
+          <div class="flex flex-1 flex-col ml-2">
+            <span class="flex-1 flex items-center">
+              <p>
+                {{this.body}}
+              </p>
+            </span>
+            <!-- Button container -->
+            <div class="self-end">
+              <button class="js-delete-comment-button" data-comment-id="{{this.id}}">
+                <svg 
+                  viewBox="-40 0 427 427.00131" 
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-4 text-red-300 fill-current hover:text-red-500"
+                >
+                    <path d="m232.398438 154.703125c-5.523438 0-10 4.476563-10 10v189c0 5.519531 4.476562 10 10 10 5.523437 0 10-4.480469 10-10v-189c0-5.523437-4.476563-10-10-10zm0 0"/>
+                    <path d="m114.398438 154.703125c-5.523438 0-10 4.476563-10 10v189c0 5.519531 4.476562 10 10 10 5.523437 0 10-4.480469 10-10v-189c0-5.523437-4.476563-10-10-10zm0 0"/>
+                    <path d="m28.398438 127.121094v246.378906c0 14.5625 5.339843 28.238281 14.667968 38.050781 9.285156 9.839844 22.207032 15.425781 35.730469 15.449219h189.203125c13.527344-.023438 26.449219-5.609375 35.730469-15.449219 9.328125-9.8125 14.667969-23.488281 14.667969-38.050781v-246.378906c18.542968-4.921875 30.558593-22.835938 28.078124-41.863282-2.484374-19.023437-18.691406-33.253906-37.878906-33.257812h-51.199218v-12.5c.058593-10.511719-4.097657-20.605469-11.539063-28.03125-7.441406-7.421875-17.550781-11.5546875-28.0625-11.46875h-88.796875c-10.511719-.0859375-20.621094 4.046875-28.0625 11.46875-7.441406 7.425781-11.597656 17.519531-11.539062 28.03125v12.5h-51.199219c-19.1875.003906-35.394531 14.234375-37.878907 33.257812-2.480468 19.027344 9.535157 36.941407 28.078126 41.863282zm239.601562 279.878906h-189.203125c-17.097656 0-30.398437-14.6875-30.398437-33.5v-245.5h250v245.5c0 18.8125-13.300782 33.5-30.398438 33.5zm-158.601562-367.5c-.066407-5.207031 1.980468-10.21875 5.675781-13.894531 3.691406-3.675781 8.714843-5.695313 13.925781-5.605469h88.796875c5.210937-.089844 10.234375 1.929688 13.925781 5.605469 3.695313 3.671875 5.742188 8.6875 5.675782 13.894531v12.5h-128zm-71.199219 32.5h270.398437c9.941406 0 18 8.058594 18 18s-8.058594 18-18 18h-270.398437c-9.941407 0-18-8.058594-18-18s8.058593-18 18-18zm0 0"/>
+                    <path d="m173.398438 154.703125c-5.523438 0-10 4.476563-10 10v189c0 5.519531 4.476562 10 10 10 5.523437 0 10-4.480469 10-10v-189c0-5.523437-4.476563-10-10-10zm0 0"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</div>
 <script src="/javascripts/delete-comment.js"></script>
 <script src="/javascripts/update-ratings.js"></script>
