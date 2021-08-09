@@ -106,6 +106,7 @@ CREATE TABLE Students_Assignments
 (
     student_id INT(11),
     assignment_id INT(11),
+    complete BOOLEAN,
     FOREIGN KEY (student_id) REFERENCES Students (id)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
