@@ -5,7 +5,7 @@ const { createPool } = require("mariadb");
 var path = require("path");
 var handlebars = require("express-handlebars").create();
 const dbUtil = require("./utils/DbUtil");
-const ratingPercents = require("./utils/RatingsUtil")
+const ratingPercents = require("./utils/RatingsUtil");
 
 // Initialize express
 var app = express();
@@ -72,10 +72,12 @@ app.get("/students/:id", async (req, res) => {
 
 // Get course info
 app.get("/assignments/:id", async (req, res) => {
-  const { comments, ratings } = await db.getAssignmentInfo(req.params.id);
+  const { assignment, comments, ratings } = await db.getAssignmentInfo(
+    req.params.id
+  );
   let percents = ratingPercents(ratings);
   res.render("assignment.handlebars", {
-    assignment: { id: req.params.id },
+    assignment,
     comments,
     ratings,
     percents,
@@ -106,35 +108,33 @@ app.post("/create-assignment", async (req, res) => {
 });
 
 // Alter ratings
-app.post("/assignments/:id/ratings", async function(req, res){
+app.post("/assignments/:id/ratings", async function (req, res) {
   // req.body is {category: value, score: value}
 
   // UPDATE if user already submitted rating for this assignment
-  if (await db.isRated(1, req.params.id, req.body.category))   // Author ID is hardcoded because we did not implement multiple user views  
-  {
-    await db.updateRating(req.body.score, 1, req.params.id, req.body.category)
+  if (await db.isRated(1, req.params.id, req.body.category)) {
+    // Author ID is hardcoded because we did not implement multiple user views
+    await db.updateRating(req.body.score, 1, req.params.id, req.body.category);
   }
 
   // INSERT if no rating submitted yet
-  else
-  {
+  else {
     // Insert new values into database
     await db.insert("Ratings", {
       category: req.body.category,
       score: req.body.score,
       assignment_id: parseInt(req.params.id), // We are given a string, but an integer is needed
-      author_id: 1 // This is a hardcoded value because we did not implement using multiple users
+      author_id: 1, // This is a hardcoded value because we did not implement using multiple users
     });
   }
 
-
   // Get ratings from database
-  let {ratings} = await db.getAssignmentRatings(req.params.id) // Need to have ratings in {}
+  let { ratings } = await db.getAssignmentRatings(req.params.id); // Need to have ratings in {}
   let percents = ratingPercents(ratings);
 
   // Send values back to page
-  res.send({ratings, percents})
-})
+  res.send({ ratings, percents });
+});
 
 // Add new comment
 app.post("/create-comment", async (req, res) => {

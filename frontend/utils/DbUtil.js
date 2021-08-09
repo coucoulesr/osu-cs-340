@@ -148,6 +148,10 @@ class db {
 
   async getAssignmentInfo(assignmentId) {
     try {
+      const [assignment] = await this.pool.query(
+        "SELECT * FROM Assignments WHERE id=?",
+        [assignmentId]
+      );
       const comments = await this.pool.query(
         "SELECT s.id as student_id, s.first_name, s.last_name, c.*, COUNT(v.value) AS votes, SUM(v.value) AS score FROM Comments c " +
           "LEFT JOIN Votes v ON v.comment_id=c.id " +
@@ -200,7 +204,7 @@ class db {
           downvotes: row.count,
         };
       }
-      return { comments, ratings };
+      return { assignment, comments, ratings };
     } catch (e) {
       console.error("db.getAssignmentInfo error: ", e);
       throw e;
@@ -298,35 +302,31 @@ class db {
     }
   }
 
-  async isRated(author_id, assignment_id, category) 
-  {
-    try
-    {
+  async isRated(author_id, assignment_id, category) {
+    try {
       // Check if rating already exists in database
-      let results = await this.pool.query("SELECT * FROM Ratings WHERE author_id = ? AND assignment_id = ? AND category = ?",[author_id, assignment_id, category])
-      
+      let results = await this.pool.query(
+        "SELECT * FROM Ratings WHERE author_id = ? AND assignment_id = ? AND category = ?",
+        [author_id, assignment_id, category]
+      );
+
       // If there are results, rating already exists
       return results.length > 0;
-    }
-
-    catch (error)
-    {
-      throw error
+    } catch (error) {
+      throw error;
     }
   }
 
-  async updateRating(score, author_id, assignment_id, category)
-  {
-    try
-    {
-      await this.pool.query("UPDATE ratings SET score = ? WHERE author_id = ? AND assignment_id = ? AND category = ?", [score, author_id, assignment_id, category])
-    }
-    catch (error)
-    {
-      throw error
+  async updateRating(score, author_id, assignment_id, category) {
+    try {
+      await this.pool.query(
+        "UPDATE ratings SET score = ? WHERE author_id = ? AND assignment_id = ? AND category = ?",
+        [score, author_id, assignment_id, category]
+      );
+    } catch (error) {
+      throw error;
     }
   }
-
 }
 
 module.exports = db;
