@@ -39,7 +39,14 @@ const db = new dbUtil({
 
 // Main page (get all courses)
 app.get("/", async (req, res) => {
-  const courses = await db.select("Classes");
+  let courses = await db.select("Classes");
+  if (req.query.search) {
+    const filter = req.query.search;
+    courses = courses.filter((course) => {
+      const courseString = `${course.subject}${course.course_number} - ${course.title}`;
+      return courseString.includes(filter);
+    });
+  }
   res.render("courses.handlebars", { courses });
 });
 

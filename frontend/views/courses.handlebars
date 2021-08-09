@@ -15,9 +15,19 @@
     <div class="p-4 bg-blue-50">
 
       {{!-- Add-course button --}}
+      <div class="flex justify-between items-center">
       <button class = "modal_open w-56 mx-4 text-white bg-indigo-400 shadow rounded-2xl h-14">
         Add Course
       </button>
+
+      <form class="flex flex-col mt-1">
+        <label for="class-search" class="text-xl mr-2">Filter Classes</label>
+        <span>
+          <input type="text" id="class-search" name="search" />
+          <input type="submit" value="Filter">
+        </span>
+      </form>
+      </div>
     
 
       {{!-- Add-Class modal --}}
