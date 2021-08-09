@@ -1,6 +1,7 @@
 // ---------- APPLICATION SETUP ----------
 // Get Dependencies
 var express = require("express");
+const { createPool } = require("mariadb");
 var path = require("path");
 var handlebars = require("express-handlebars").create();
 const dbUtil = require("./utils/DbUtil");
@@ -106,17 +107,29 @@ app.post("/create-assignment", async (req, res) => {
 
 // Alter ratings
 app.post("/assignments/:id/ratings", async function(req, res){
-  // req contains {category: value, score: value}
-  // Insert new values into database
-  await db.insert("Ratings", {
-    category: req.body.category,
-    score: req.body.score,
-    assignment_id: parseInt(req.params.id), // We are given a string, but an integer is needed
-    author_id: 1 // This is a default value because we did not implement using multiple users
-  });
+  // req.body is {category: value, score: value}
+
+  // UPDATE if user already submitted rating for this assignment
+  if (await db.isRated(1, req.params.id, req.body.category))   // Author ID is hardcoded because we did not implement multiple user views  
+  {
+    await db.updateRating(req.body.score, 1, req.params.id, req.body.category)
+  }
+
+  // INSERT if no rating submitted yet
+  else
+  {
+    // Insert new values into database
+    await db.insert("Ratings", {
+      category: req.body.category,
+      score: req.body.score,
+      assignment_id: parseInt(req.params.id), // We are given a string, but an integer is needed
+      author_id: 1 // This is a hardcoded value because we did not implement using multiple users
+    });
+  }
+
 
   // Get ratings from database
-  let ratings = await db.getAssignmentRatings(req.params.id)
+  let {ratings} = await db.getAssignmentRatings(req.params.id) // Need to have ratings in {}
   let percents = ratingPercents(ratings);
 
   // Send values back to page

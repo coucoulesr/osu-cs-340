@@ -6,6 +6,8 @@ async function update_ratings(category, score)
     http_body.score = score;
     http_body = JSON.stringify(http_body)
 
+    console.log(http_body)
+
     // Get assignment id from url
     current_url = window.location.href
     assignment_id = current_url.slice(current_url.search('assignments/') + 12) // Given 'url.assignments/23' this should return '23'
@@ -22,11 +24,11 @@ async function update_ratings(category, score)
     let resContent = await response.json();
 
     // Update ratings on page
-    console.log('test')
+    location.reload()
 
 }
 
-document.getElementById("rate_easy").addEventListener('click', function(event){ event.preventDefault(), update_ratings("difficulty", -1)})
+document.getElementById("rate_easy").addEventListener('click', function(event){event.preventDefault(), update_ratings("difficulty", -1)})
 document.getElementById("rate_medium").addEventListener('click', function(event){event.preventDefault(), update_ratings("difficulty", 0)})
 document.getElementById("rate_hard").addEventListener('click', function(event){event.preventDefault(), update_ratings("difficulty", 1)})
 

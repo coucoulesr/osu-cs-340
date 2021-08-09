@@ -297,6 +297,36 @@ class db {
       throw e;
     }
   }
+
+  async isRated(author_id, assignment_id, category) 
+  {
+    try
+    {
+      // Check if rating already exists in database
+      let results = await this.pool.query("SELECT * FROM Ratings WHERE author_id = ? AND assignment_id = ? AND category = ?",[author_id, assignment_id, category])
+      
+      // If there are results, rating already exists
+      return results.length > 0;
+    }
+
+    catch (error)
+    {
+      throw error
+    }
+  }
+
+  async updateRating(score, author_id, assignment_id, category)
+  {
+    try
+    {
+      await this.pool.query("UPDATE ratings SET score = ? WHERE author_id = ? AND assignment_id = ? AND category = ?", [score, author_id, assignment_id, category])
+    }
+    catch (error)
+    {
+      throw error
+    }
+  }
+
 }
 
 module.exports = db;
