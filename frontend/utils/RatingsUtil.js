@@ -1,6 +1,5 @@
 function calculateRatingPercents(category)
 {
-    console.log('cats', category) //test
     // Get initial values
     let upvotes = category.upvotes;
     let midvotes = category.midvotes;
@@ -37,7 +36,6 @@ function calculateRatingPercents(category)
 // }
 module.exports = function ratingPercents(ratings)
 {
-    console.log("thisstuf", ratings) //test
     let percents = {};
 
     percents.difficulty = calculateRatingPercents(ratings.difficulty);
