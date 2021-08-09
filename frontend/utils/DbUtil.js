@@ -1,6 +1,7 @@
 const mariadb = require("mariadb");
 
 class db {
+  // Constructor: generates and tests database pool
   constructor(poolOptions) {
     const pool = this.createPool(poolOptions);
     this.#testPool(pool).then((pass) => {
@@ -8,10 +9,13 @@ class db {
     });
   }
 
+  // Method wrapper for mariadb create pool function
   createPool(poolOptions) {
     return mariadb.createPool(poolOptions);
   }
 
+  // Returns true if database connection is successful
+  // Else throws error
   async #testPool(pool) {
     try {
       const conn = await pool.getConnection();
@@ -53,19 +57,19 @@ class db {
     }
   }
 
-  // Insert values into table
-  async insert(table, values) {
+  // Insert object (item) into table
+  async insert(table, item) {
     try {
       let query = "INSERT INTO " + table + " (";
       let queryParams = [];
-      for (let key in values) {
+      for (let key in item) {
         query += `${key}, `;
       }
       query = query.slice(0, query.length - 2);
       query += ")\nVALUES (";
-      for (let key in values) {
+      for (let key in item) {
         query += "?, ";
-        queryParams.push(values[key]);
+        queryParams.push(item[key]);
       }
       query = query.slice(0, query.length - 2);
       query += ");";
@@ -97,7 +101,7 @@ class db {
     }
   }
 
-  // Get students in course by courseId
+  // Returns array of students in course by courseId
   async getStudentsInCourse(courseId) {
     try {
       const output = await this.pool.query(
@@ -114,7 +118,7 @@ class db {
     }
   }
 
-  // Get assignments in course by courseId
+  // Returns array of assignments in course by courseId
   async getAssignmentsInCourse(courseId) {
     try {
       const output = await this.pool.query(
@@ -130,6 +134,7 @@ class db {
     }
   }
 
+  // Returns array of all courses student with given ID is enrolled in
   async getCoursesWithStudent(studentId) {
     try {
       const output = await this.pool.query(
@@ -146,6 +151,10 @@ class db {
     }
   }
 
+  // Returns object with properties "assignment" (object), "comments" (array), "ratings" (object)
+  //   - assignment contains information about the assignment
+  //   - comments contains all of the comments associated with the assignment
+  //   - ratings contains aggregate totals of all rating categories associated with the assignment
   async getAssignmentInfo(assignmentId) {
     try {
       const [assignment] = await this.pool.query(
@@ -211,6 +220,8 @@ class db {
     }
   }
 
+  // Returns an object with property "ratings" (object)
+  //   - ratings contains aggregate totals of all rating categories associated with the assignment
   async getAssignmentRatings(assignmentId) {
     try {
       const ratings = {
@@ -263,6 +274,7 @@ class db {
     }
   }
 
+  // Updates the course with the given courseId to have the given title
   async editCourse(courseId, title) {
     try {
       const output = this.pool.query("UPDATE Classes SET title=? WHERE id=?;", [
@@ -276,6 +288,7 @@ class db {
     }
   }
 
+  // Updates the student with the given studentId to have the given first and last names
   async editStudent(studentId, { first_name, last_name }) {
     try {
       const output = this.pool.query(
@@ -289,6 +302,7 @@ class db {
     }
   }
 
+  // Updates the assignment with the given assignmentId to have the given title
   async editAssignment(assignmentId, title) {
     try {
       const output = this.pool.query(
@@ -302,6 +316,8 @@ class db {
     }
   }
 
+  // Returns a boolean indicating whether the student with id=author_id has already rated the
+  // assignment with id=assignment_id in the given category
   async isRated(author_id, assignment_id, category) {
     try {
       // Check if rating already exists in database
@@ -317,6 +333,7 @@ class db {
     }
   }
 
+  // Updates rating with given author_id, assignment_id, and category to have given score
   async updateRating(score, author_id, assignment_id, category) {
     try {
       await this.pool.query(
