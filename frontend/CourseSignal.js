@@ -63,7 +63,14 @@ app.get("/courses/:id", async (req, res) => {
 
 // Get all students
 app.get("/students", async (req, res) => {
-  const students = await db.select("Students");
+  let students = await db.select("Students");
+  if (req.query.search) {
+    const filter = req.query.search;
+    students = students.filter((student) => {
+      const studentString = `${student.pin} - ${student.first_name} ${student.last_name}`;
+      return studentString.includes(filter);
+    });
+  }
   res.render("students.handlebars", { students });
 });
 

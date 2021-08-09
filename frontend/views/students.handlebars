@@ -13,10 +13,21 @@
     {{!-- Box --}}
     <div class="p-4 bg-blue-50">
 
+      <div class="flex justify-between items-center">
       {{!-- Add Student button --}}
       <button class = "modal_open w-56 mx-4 text-white bg-indigo-400 shadow rounded-2xl h-14">
         Add Student
       </button>
+
+      <form class="flex flex-col mt-1">
+        <label for="class-search" class="text-xl mr-2">Filter Students</label>
+        <span>
+          <input type="text" id="class-search" name="search" class="py-1" />
+          <input type="submit" value="Filter" class="text-sm text-white py-1 px-2 bg-indigo-400 shadow rounded cursor-pointer" />
+          <a href="/"><button type="button" class="text-sm inline text-white py-1 px-2 bg-indigo-400 shadow rounded">Clear Filter</p></a>
+        </span>
+      </form>
+      </div>
     
 
       {{!-- Add-Class modal --}}
