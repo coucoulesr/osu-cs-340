@@ -167,9 +167,14 @@ app.post("/assignments/updateVote/:comment_id", async function(req, res){
   // req.body is {comment_id: number, student_id: number, value: number}
 
   // UPDATE if user already submitted rating for this assignment
-  if (await db.hasVoted(req.body.student_id, req.body.comment_id)) {
+  let vote = await db.hasVoted(req.body.student_id, req.body.comment_id)
+  if (vote.hasVoted) {
     // Author ID is hardcoded because we did not implement multiple user views
-    await db.updateVote(req.body.student_id, req.body.comment_id, req.body.value);
+    if (vote.value == -1 || vote.value == 1)
+    {
+      await db.updateVote(req.body.student_id, req.body.comment_id, 0);
+    }
+    
   }
 
   // INSERT if no vote submitted yet
@@ -182,10 +187,9 @@ app.post("/assignments/updateVote/:comment_id", async function(req, res){
     });
   }
 
-  let { votesum } = await db.getVoteSum(req.body.comment_id);
-
+  let votesum  = await db.getVoteSum(req.body.comment_id);
   // Send values back to page
-  res.send({ votesum });
+  res.send(votesum);
 })
 
 // Add student to course

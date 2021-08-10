@@ -354,9 +354,14 @@ class db {
         "SELECT * FROM Votes WHERE student_id = ? AND comment_id = ?",
         [student_id, comment_id]
       );
+      let voted = results.length > 0
 
       // If there are results, rating already exists
-      return results.length > 0;
+      if (voted)
+      {
+        return {hasvoted: voted, value: results.value};
+      }
+      else {return {hasVoted: voted}}
     } catch (error) {
       throw error;
     }
@@ -379,9 +384,8 @@ class db {
   {
     try
     {
-      const votesum = await this.pool.query("SELECT SUM(value) FROM Votes WHERE comment_id = ?",[comment_id]);
-      console.log(votesum)
-      return {votesum}
+      const votesum = await this.pool.query("SELECT SUM(value) as votesum FROM Votes WHERE comment_id = ?",[comment_id]);
+      return votesum[0]
     }
     catch (error)
     {

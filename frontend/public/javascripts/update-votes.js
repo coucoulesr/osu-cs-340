@@ -17,8 +17,6 @@ function generateUpvoteHandlers(){
                     http_body.value = 1
                     http_body = JSON.stringify(http_body)
                     
-                    console.log(http_body)
-                    console.log("/assignments/updateVote/" + upButtons[i].value)
                     // Send updated vote
                     let response = await fetch("/assignments/updateVote/" + upButtons[i].value, 
                     {
@@ -31,7 +29,8 @@ function generateUpvoteHandlers(){
                     response = await response.json()
 
                     // Alter vote total on screen
-                    votesums[i].textContent = response.body.votesum
+                    console.log(response)
+                    votesums[i].textContent = response.votesum
 
                 }
             }
@@ -57,11 +56,9 @@ function generateDownvoteHandlers(){
                     let http_body = {}
                     http_body.comment_id= downButtons[i].value;
                     http_body.student_id = 1; // Hardcoded because we did not implement multiple views
-                    http_body.value = -1
+                    http_body.value = -1;
                     http_body = JSON.stringify(http_body)
                     
-                    console.log(http_body)
-                    console.log("/assignments/updateVote/" + downButtons[i].value)
                     // Send updated vote
                     let response = await fetch("/assignments/updateVote/" + downButtons[i].value, 
                     {
@@ -74,7 +71,8 @@ function generateDownvoteHandlers(){
                     response = await response.json()
 
                     // Alter vote total on screen
-                    votesums[i].textContent = response.body.votesum
+                    console.log(response)
+                    votesums[i].textContent = response.votesum
 
                 }
             }
@@ -86,5 +84,5 @@ function generateDownvoteHandlers(){
 // Add handlers for every up button
 downHandlers = generateDownvoteHandlers();
 for (var i = 0; i < downHandlers.length; i++){
-    upHandlers[i]()
+    downHandlers[i]()
 }
