@@ -363,7 +363,7 @@ class db {
   }
 
   // Updates vote with given student_id and comment_id to have given value
-  async updateRating(student_id, comment_id, value) {
+  async updateVote(student_id, comment_id, value) {
     try {
       await this.pool.query(
         "UPDATE Votes SET value = ? WHERE student_id = ? AND comment_id = ?",
@@ -379,7 +379,7 @@ class db {
   {
     try
     {
-      const votesum = await this.pool.query("SELECT SUM(value) FROM Votes WHERE comment_id = ?",[assignmentId]);
+      const votesum = await this.pool.query("SELECT SUM(value) FROM Votes WHERE comment_id = ?",[comment_id]);
       console.log(votesum)
       return {votesum}
     }
