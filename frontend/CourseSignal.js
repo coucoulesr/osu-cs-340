@@ -94,7 +94,7 @@ app.get("/assignments/:id", async (req, res) => {
     assignment,
     comments,
     ratings,
-    percents,
+    percents
   });
 });
 
