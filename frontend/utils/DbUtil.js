@@ -344,6 +344,50 @@ class db {
       throw error;
     }
   }
+
+  // Returns a boolean indicating whether the student with id=student_id has already voted on the
+  // comment with id=comment_id
+  async hasVoted(student_id, comment_id) {
+    try {
+      // Check if rating already exists in database
+      let results = await this.pool.query(
+        "SELECT * FROM Votes WHERE student_id = ? AND comment_id = ?",
+        [student_id, comment_id]
+      );
+
+      // If there are results, rating already exists
+      return results.length > 0;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  // Updates vote with given student_id and comment_id to have given value
+  async updateRating(student_id, comment_id, value) {
+    try {
+      await this.pool.query(
+        "UPDATE Votes SET value = ? WHERE student_id = ? AND comment_id = ?",
+        [value, student_id, comment_id]
+      );
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  // Get the total votes for a comment
+  async getVoteSum(comment_id)
+  {
+    try
+    {
+      const votesum = await this.pool.query("SELECT SUM(value) FROM Votes WHERE comment_id = ?",[assignmentId]);
+      console.log(votesum)
+      return {votesum}
+    }
+    catch (error)
+    {
+      throw error
+    }
+  }
 }
 
 module.exports = db;

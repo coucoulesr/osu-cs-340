@@ -225,14 +225,13 @@
         <div class="flex p-2 my-2">
           <!-- Commenter Info -->
           <div class="mt-1 ml-2 mr-4 w-14 min-w-14 flex items-center">
-
             <div class = "flex flex-col pr-2">
-              <button class = "upvote">
+              <button id = "upvote" class = "upvote" value = "{{this.id}}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up" viewBox="0 0 16 16">
                   <path d="M3.204 11h9.592L8 5.519 3.204 11zm-.753-.659 4.796-5.48a1 1 0 0 1 1.506 0l4.796 5.48c.566.647.106 1.659-.753 1.659H3.204a1 1 0 0 1-.753-1.659z"/>
                 </svg>
               </button>
-              <span>10</span>
+              <span class="vote-sum">10</span>
               <button class = "downvote">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down" viewBox="0 0 16 16">
                   <path d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"/>
@@ -283,5 +282,6 @@
 </div>
 <script src="/javascripts/delete-comment.js"></script>
 <script src="/javascripts/update-ratings.js"></script>
+<script src="/javascripts/update-votes.js"></script>
 {{!-- For if changing views --}}
 {{!-- <script src="/javascripts/populate-student-select.js"></script> --}}
